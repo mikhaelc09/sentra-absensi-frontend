@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from './pages/Login';
 import ResetPassPage from './pages/ResetPass';
+import HomePage from './pages/absensi/Home';
 
 const theme = extendTheme({
   colors: {
@@ -17,8 +18,9 @@ function App() {
   return(
     <ChakraProvider>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPassPage />} />
+        <Route exact path="/" element={<LoginPage />} />
+        <Route exact path="/reset-password" element={<ResetPassPage />} />
+        <Route exact path="/absensi" element={<HomePage />} />
       </Routes>
     </ChakraProvider>
     

@@ -55,8 +55,11 @@ function LoginPage(){
                             <Input type='email' _placeholder={'Masukkan email'} />
                             <FormHelperText>Link reset password akan dikirimkan ke email yang diberikan</FormHelperText>
                         </FormControl>
+                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Kirim Email</Button>
                     </ModalBody>
-                    <ModalFooter />
+                    <ModalFooter>
+                        
+                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </div>

@@ -32,7 +32,7 @@ function ResetPassPage(){
                             <FormLabel>Konfirmasi Password</FormLabel>
                             <Input type='password' />
                         </FormControl>
-                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Login</Button>
+                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Reset</Button>
                     </CardBody>
                 </Card>
                 <p className='text-sm text-primary mt-3'>©️ Sentra Medika Surabaya</p>
