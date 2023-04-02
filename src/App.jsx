@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import LoginPage from './pages/Login';
 
 function App() {
   return(
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <ChakraProvider>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+    </ChakraProvider>
+    
   )
   
 }
