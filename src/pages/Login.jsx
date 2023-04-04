@@ -50,16 +50,13 @@ function LoginPage(){
                 <ModalContent>
                     <ModalHeader>Lupa Password?</ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody>
+                    <ModalBody className='mb-5'>
                         <FormControl>
                             <Input type='email' _placeholder={'Masukkan email'} />
                             <FormHelperText>Link reset password akan dikirimkan ke email yang diberikan</FormHelperText>
                         </FormControl>
                         <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Kirim Email</Button>
                     </ModalBody>
-                    <ModalFooter>
-                        
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </div>

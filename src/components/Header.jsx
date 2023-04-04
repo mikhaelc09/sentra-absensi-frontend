@@ -27,12 +27,12 @@ function Header(props){
             <Drawer onClose={onClose} isOpen={isOpen} size={'xs'} placement='left' className='bg-primary text-white'>
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton />
-                    <DrawerHeader className="flex py-auto">
+                    <DrawerCloseButton className="text-white" />
+                    <DrawerHeader className="flex py-auto bg-primary text-white">
                         <HiUserCircle className="text-3xl" />
                         <p className="ml-3">{props.user}</p>
                     </DrawerHeader>
-                    <DrawerBody>
+                    <DrawerBody className="bg-primary text-white">
                         <div className="flex my-4">
                             <HiHome className="text-3xl" />
                             <p className="ml-3">Beranda</p>
