@@ -4,11 +4,17 @@ import { HiOutlineClock, HiOutlineArrowCircleDown, HiOutlineArrowCircleUp } from
 import Header from "../../components/Header"
 import { 
     Button,
+    Checkbox,
+    FormControl, FormHelperText, Input,
     Card, CardBody,
+    Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, ModalFooter,
+    useDisclosure
  } from '@chakra-ui/react'
 import AbsensiCard from '../../components/AbsensiCard'
 
 function HomePage(){
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const [jamMasuk, setJamMasuk] = useState('06:55')
     const [jamPulang, setJamPulang] = useState('14:09')
     const [jamKerja, setJamKerja] = useState('07:14')
@@ -39,7 +45,7 @@ function HomePage(){
             <div className="content p-10 text-left">
                 <p className="text-xl font-semibold text-primary mb-3">Absensi</p>
                 <Card>
-                    <CardBody className='flex'>
+                    <CardBody className='flex flex-col'>
                         <div className="flex flex-row gap-x-10 mx-auto">
                             <div className="flex flex-col text-center">
                                 <HiOutlineArrowCircleDown className='text-2xl text-primary mx-auto' />
@@ -57,7 +63,9 @@ function HomePage(){
                                 <p className="text-sm text-primary">Jam Kerja</p>
                             </div>
                         </div>
+                        <Button colorScheme='primary' className='bg-primary mt-8 w-full' onClick={onOpen}>Absen</Button>
                     </CardBody>
+                    
                 </Card>
                 <p className="text-xl font-semibold text-primary mt-10 mb-3">Riwayat Absensi Hari Ini</p>
                 <Card>
@@ -73,6 +81,21 @@ function HomePage(){
                 </Card>
                 <Button colorScheme='primary' className='bg-primary mt-8 w-full'>Lihat Laporan Absensi Periode Ini</Button>
             </div>
+            <Modal isOpen={isOpen} onClose={onClose} size={'xs'} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Absen</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody className='mb-5'>
+                        <FormControl>
+                            <Input type='email' _placeholder={'Keterangan absensi'} />
+                            <FormHelperText>*hanya isi jika diperlukan</FormHelperText>
+                        </FormControl>
+                        <Checkbox className='mt-3'>Lembur</Checkbox>
+                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Absen</Button>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </div>
     )
 }
