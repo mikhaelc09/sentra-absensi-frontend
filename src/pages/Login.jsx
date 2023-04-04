@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import {
     Input,
     FormControl, FormLabel, FormErrorMessage, FormHelperText,
@@ -11,6 +12,10 @@ import Logo from '../assets/images/logo_white.png'
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
+    const login = () => {
+        navigate('/absensi')
+    }
 
     return(
         <div className='h-screen w-screen relative'>
@@ -40,7 +45,7 @@ function LoginPage(){
                                 onClick={onOpen}
                             >Lupa password?</FormHelperText>
                         </FormControl>
-                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Login</Button>
+                        <Button colorScheme='primary' className='bg-primary mt-5 w-full' onClick={login}>Login</Button>
                     </CardBody>
                 </Card>
                 <p className='text-sm text-primary mt-3'>©️ Sentra Medika Surabaya</p>
