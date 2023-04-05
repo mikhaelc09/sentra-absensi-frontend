@@ -41,8 +41,8 @@ function RiwayatPage(){
                         Ajukan Izin
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>Tugas MCU</MenuItem>
-                        <MenuItem>Izin Cuti</MenuItem>
+                        <MenuItem onClick={()=>{ navigate('/izin/mcu') }}>Tugas MCU</MenuItem>
+                        <MenuItem onClick={()=>{ navigate('/izin/cuti') }}>Izin Cuti</MenuItem>
                     </MenuList>
                 </Menu>
                 <div className="mt-5 flex flex-col cards gap-y-3">
