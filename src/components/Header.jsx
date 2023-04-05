@@ -3,9 +3,11 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { HiMenuAlt2, HiUserCircle, HiHome, HiDocumentText, HiCalendar, HiLogout } from 'react-icons/hi'
+import { useNavigate } from 'react-router-dom'
 
 function Header(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     return(
         <div className="w-screen bg-primary text-white p-5">
@@ -32,21 +34,21 @@ function Header(props){
                         <p className="ml-3">{props.user}</p>
                     </DrawerHeader>
                     <DrawerBody className="bg-primary text-white">
-                        <div className="flex my-4">
+                        <div className="flex my-4" onClick={ ()=>{ navigate('/absensi') } }>
                             <HiHome className="text-3xl" />
-                            <p className="ml-3">Beranda</p>
+                            <p className="ml-3 my-auto">Beranda</p>
                         </div>
-                        <div className="flex my-4">
+                        <div className="flex my-4" onClick={ ()=>{  } }>
                             <HiDocumentText className="text-3xl" />
-                            <p className="ml-3">Laporan Kehadiran</p>
+                            <p className="ml-3 my-auto">Laporan Kehadiran</p>
                         </div>
-                        <div className="flex my-4">
+                        <div className="flex my-4" onClick={ ()=>{ navigate('/izin') } }>
                             <HiCalendar className="text-3xl" />
-                            <p className="ml-3">Pengajuan Izin</p>
+                            <p className="ml-3 my-auto">Pengajuan Izin</p>
                         </div>
-                        <div className="flex my-4">
+                        <div className="flex my-4" onClick={ ()=>{ navigate('/') } }>
                             <HiLogout className="text-3xl" />
-                            <p className="ml-3">Logout</p>
+                            <p className="ml-3 my-auto">Logout</p>
                         </div>
                     </DrawerBody>
                 </DrawerContent>

@@ -9,7 +9,7 @@ function AbsensiCard(props){
                 <p className="font-medium">{props.alamat}</p>
                 <p className="font-medium">{props.kota}</p>
             </div>
-            <div className="icon w-1/6 m-auto">
+            <div className="icon w-1/6 my-auto ml-auto">
                 {
                     props.valid==true && <HiOutlineCheckCircle className='text-3xl text-green-700' /> ||
                     props.valid==false && <HiOutlineXCircle className='text-3xl text-red-700' />

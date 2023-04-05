@@ -46,20 +46,20 @@ function HomePage(){
                 <p className="text-xl font-semibold text-primary mb-3">Absensi</p>
                 <Card>
                     <CardBody className='flex flex-col'>
-                        <div className="flex flex-row gap-x-10 mx-auto">
+                        <div className="flex flex-row gap-x-14 mx-auto">
                             <div className="flex flex-col text-center">
-                                <HiOutlineArrowCircleDown className='text-2xl text-primary mx-auto' />
-                                <p className="text-xl font-bold">{jamMasuk}</p>
+                                <HiOutlineArrowCircleDown className='text-3xl text-primary mx-auto' />
+                                <p className="text-2xl font-bold">{jamMasuk}</p>
                                 <p className="text-sm text-primary">Absen Masuk</p>
                             </div>
                             <div className="flex flex-col text-center">
-                                <HiOutlineArrowCircleUp className='text-2xl text-primary mx-auto' />
-                                <p className="text-xl font-bold">{jamPulang}</p>
+                                <HiOutlineArrowCircleUp className='text-3xl text-primary mx-auto' />
+                                <p className="text-2xl font-bold">{jamPulang}</p>
                                 <p className="text-sm text-primary">Absen Keluar</p>
                             </div>
                             <div className="flex flex-col text-center">
-                                <HiOutlineClock className='text-2xl text-primary mx-auto' />
-                                <p className="text-xl font-bold">{jamKerja}</p>
+                                <HiOutlineClock className='text-3xl text-primary mx-auto' />
+                                <p className="text-2xl font-bold">{jamKerja}</p>
                                 <p className="text-sm text-primary">Jam Kerja</p>
                             </div>
                         </div>
