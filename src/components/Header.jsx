@@ -29,7 +29,7 @@ function Header(props){
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton className="text-white" />
-                    <DrawerHeader className="flex py-auto bg-primary text-white">
+                    <DrawerHeader className="flex py-auto bg-primary text-white" onClick={ ()=>{ navigate('/profil') } }>
                         <HiUserCircle className="text-3xl" />
                         <p className="ml-3">{props.user}</p>
                     </DrawerHeader>

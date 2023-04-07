@@ -6,6 +6,7 @@ import {
     Button
 } from '@chakra-ui/react'
 import Logo from '../assets/images/logo_white.png'
+import InputPassword from '../components/InputPassword'
   
 function ResetPassPage(){
     return(
@@ -26,11 +27,11 @@ function ResetPassPage(){
                         <p className='text-2xl text-primary font-medium mb-5'>Reset Password</p>
                         <FormControl className='mb-2'>
                             <FormLabel>Password Baru</FormLabel>
-                            <Input type='password' />
+                            <InputPassword />
                         </FormControl>
                         <FormControl>
                             <FormLabel>Konfirmasi Password</FormLabel>
-                            <Input type='password' />
+                            <InputPassword />
                         </FormControl>
                         <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Reset</Button>
                     </CardBody>

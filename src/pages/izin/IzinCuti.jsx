@@ -9,6 +9,7 @@ import {
 import Header from "../../components/Header"
 
 function IzinCuti(){
+    const navigate = useNavigate()
     const [cuti, setCuti] = useState(8)
     const [nama, setNama] = useState('Mikhael Chris')
     const [divisi, setDivisi] = useState('Admin')
@@ -74,7 +75,7 @@ function IzinCuti(){
                         </div>
                     </FormControl>
                     <div className="buttons flex gap-x-2 mt-5">
-                        <Button colorScheme="primary" variant='outline' className="w-1/2">Batal</Button>
+                        <Button colorScheme="primary" variant='outline' className="w-1/2" onClick={ ()=>{navigate('/izin')} }>Batal</Button>
                         <Button colorScheme="primary" variant='solid' className="bg-primary w-1/2">Ajukan</Button>
                     </div>
                 </div>
