@@ -11,9 +11,11 @@ import {
     useDisclosure
  } from '@chakra-ui/react'
 import AbsensiCard from '../../components/AbsensiCard'
+import { useNavigate } from 'react-router-dom'
 
 function HomePage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     const [jamMasuk, setJamMasuk] = useState('06:55')
     const [jamPulang, setJamPulang] = useState('14:09')
@@ -79,7 +81,7 @@ function HomePage(){
                         }
                     </CardBody>
                 </Card>
-                <Button colorScheme='primary' className='bg-primary mt-8 w-full'>Lihat Laporan Absensi Periode Ini</Button>
+                <Button colorScheme='primary' className='bg-primary mt-8 w-full' onClick={()=>{ navigate('/absensi/laporan/periode') }} >Lihat Laporan Absensi Periode Ini</Button>
             </div>
             <Modal isOpen={isOpen} onClose={onClose} size={'xs'} isCentered>
                 <ModalOverlay />

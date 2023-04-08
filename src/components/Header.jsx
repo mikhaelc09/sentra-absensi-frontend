@@ -38,7 +38,7 @@ function Header(props){
                             <HiHome className="text-3xl" />
                             <p className="ml-3 my-auto">Beranda</p>
                         </div>
-                        <div className="flex my-4" onClick={ ()=>{  } }>
+                        <div className="flex my-4" onClick={ ()=>{ navigate('/absensi/laporan/tahunan') } }>
                             <HiDocumentText className="text-3xl" />
                             <p className="ml-3 my-auto">Laporan Kehadiran</p>
                         </div>

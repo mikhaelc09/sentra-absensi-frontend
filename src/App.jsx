@@ -10,6 +10,8 @@ import IzinCuti from './pages/izin/IzinCuti';
 import IzinMCU from './pages/izin/IzinMCU';
 import ProfilePage from './pages/profile/Profile';
 import UbahPass from './pages/profile/UbahPass';
+import LaporanPeriode from './pages/absensi/LaporanPeriode';
+import LaporanTahunan from './pages/absensi/LaporanTahunan';
 
 const theme = extendTheme({
   colors: {
@@ -26,6 +28,8 @@ function App() {
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/reset-password" element={<ResetPassPage />} />
         <Route exact path="/absensi" element={<HomePage />} />
+        <Route exact path="/absensi/laporan/periode" element={<LaporanPeriode />} />
+        <Route exact path="/absensi/laporan/tahunan" element={<LaporanTahunan />} />
         <Route exact path="/izin" element={<RiwayatPage /> } />
         <Route exact path="/izin/cuti" element={<IzinCuti /> } />
         <Route exact path="/izin/mcu" element={<IzinMCU /> } />
