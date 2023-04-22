@@ -1,36 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react'
 import { HiPlus } from 'react-icons/hi'
 
 import Header from '../../components/Header'
 import IzinCard from '../../components/IzinCard'
+import { http } from '../../utils/index'
 
 function RiwayatPage(){
     const navigate = useNavigate()
     const [izin, setIzin] = useState([
         {
-            tanggalMulai: '10 Maret 2023',
-            tanggalSelesai: '10 Maret 2023',
-            jenis: 'Cuti',
+            id: 1,
+            waktu_mulai: '10 Maret 2023',
+            waktu_selesai: '10 Maret 2023',
+            jenis: 1,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 'Ditolak'
+            status: 3
         },
         {
-            tanggalMulai: '15 Maret 2023',
-            tanggalSelesai: '17 Maret 2023',
-            jenis: 'MCU',
+            id: 2,
+            waktu_mulai: '15 Maret 2023',
+            waktu_selesai: '17 Maret 2023',
+            jenis: 2,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 'Disetujui'
+            status: 2
         },
         {
-            tanggalMulai: '20 Maret 2023',
-            tanggalSelesai: '20 Maret 2023',
-            jenis: 'Cuti',
+            id: 3,
+            waktu_mulai: '20 Maret 2023',
+            waktu_selesai: '20 Maret 2023',
+            jenis: 1,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 'Menunggu'
+            status: 1
         },
     ])
+
+    const fetchIzin = async () => {
+        const res = await http.get(`/izin`)
+        setIzin(res.data.izin)
+    }
+
+    // useEffect(() => {
+    //     fetchIzin()
+    // }, [])
 
     return(
         <div className="w-screen h-full bg-gray">
@@ -49,7 +62,7 @@ function RiwayatPage(){
                     {
                         izin.map((i, index)=>{
                             return(
-                                <IzinCard key={index} tanggalMulai={i.tanggalMulai} tanggalSelesai={i.tanggalSelesai} jenis={i.jenis} keterangan={i.keterangan} status={i.status} />
+                                <IzinCard key={index} izin={i} />
                             )
                         })
                     }
