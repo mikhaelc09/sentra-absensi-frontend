@@ -35,42 +35,44 @@ function DetailIzinPage(){
                 <Card>
                     <CardBody>
                         <table>
-                            <tr>
-                                <td className="py-2 pr-2 align-top max-w-full whitespace-nowrap">Tanggal Mulai</td>
-                                <td className="p-2 align-top">:</td>
-                                <td className="p-2 align-top">{izin.waktu_mulai}</td>
-                            </tr>
-                            <tr>
-                                <td className="py-2 align-top max-w-full whitespace-nowrap">Tanggal Selesai</td>
-                                <td className="p-2 align-top">:</td>
-                                <td className="p-2 align-top">{izin.waktu_selesai}</td>
-                            </tr>
-                            <tr>
-                                <td className="py-2 align-top max-w-full whitespace-nowrap">Keterangan</td>
-                                <td className="p-2 align-top">:</td>
-                                <td className="p-2 align-top">{izin.keterangan}</td>
-                            </tr>
-                            {
-                                izin.pengganti!=null && 
+                            <tbody>
                                 <tr>
-                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Pengganti</td>
+                                    <td className="py-2 pr-2 align-top max-w-full whitespace-nowrap">Tanggal Mulai</td>
                                     <td className="p-2 align-top">:</td>
-                                    <td className="p-2 align-top">{izin.pengganti}</td>
+                                    <td className="p-2 align-top">{izin.waktu_mulai}</td>
                                 </tr>
-                            }
-                            {
-                                izin.lokasi!=null && 
                                 <tr>
-                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Lokasi</td>
+                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Tanggal Selesai</td>
                                     <td className="p-2 align-top">:</td>
-                                    <td className="p-2 align-top">{izin.lokasi}</td>
+                                    <td className="p-2 align-top">{izin.waktu_selesai}</td>
                                 </tr>
-                            }
-                            <tr>
-                                <td className="py-2 align-top max-w-full whitespace-nowrap">Status</td>
-                                <td className="p-2 align-top">:</td>
-                                <td className="p-2 align-top">{izin.status}</td>
-                            </tr>
+                                <tr>
+                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Keterangan</td>
+                                    <td className="p-2 align-top">:</td>
+                                    <td className="p-2 align-top">{izin.keterangan}</td>
+                                </tr>
+                                {
+                                    izin.pengganti!=null && 
+                                    <tr>
+                                        <td className="py-2 align-top max-w-full whitespace-nowrap">Pengganti</td>
+                                        <td className="p-2 align-top">:</td>
+                                        <td className="p-2 align-top">{izin.pengganti}</td>
+                                    </tr>
+                                }
+                                {
+                                    izin.lokasi!=null && 
+                                    <tr>
+                                        <td className="py-2 align-top max-w-full whitespace-nowrap">Lokasi</td>
+                                        <td className="p-2 align-top">:</td>
+                                        <td className="p-2 align-top">{izin.lokasi}</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Status</td>
+                                    <td className="p-2 align-top">:</td>
+                                    <td className="p-2 align-top">{izin.status}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </CardBody>
                 </Card>

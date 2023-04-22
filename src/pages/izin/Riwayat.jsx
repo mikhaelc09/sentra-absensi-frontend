@@ -14,7 +14,7 @@ function RiwayatPage(){
             id: 1,
             waktu_mulai: '10 Maret 2023',
             waktu_selesai: '10 Maret 2023',
-            jenis: 1,
+            jenis: 2,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
             status: 3
         },
@@ -22,7 +22,7 @@ function RiwayatPage(){
             id: 2,
             waktu_mulai: '15 Maret 2023',
             waktu_selesai: '17 Maret 2023',
-            jenis: 2,
+            jenis: 1,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
             status: 2
         },
@@ -30,7 +30,7 @@ function RiwayatPage(){
             id: 3,
             waktu_mulai: '20 Maret 2023',
             waktu_selesai: '20 Maret 2023',
-            jenis: 1,
+            jenis: 2,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
             status: 1
         },

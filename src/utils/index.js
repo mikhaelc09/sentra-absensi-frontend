@@ -10,8 +10,10 @@ const getCookie = (cookieName) => {
 }
 
 const http = axios.create({
-    baseURL:"http://localhost:3000/api",
+    baseURL:"http://localhost:3000/api/v1",
     headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
         'x-auth-token': getCookie('token')
     }
 })
