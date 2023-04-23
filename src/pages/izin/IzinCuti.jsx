@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {
     Input, Textarea, Select,
@@ -15,11 +15,25 @@ function IzinCuti(){
     const [nama, setNama] = useState('Mikhael Chris')
     const [divisi, setDivisi] = useState('Admin')
 
-    const [karyawan, setKaryawan] = useState([
-        'Michael Kevin',
-        'Alexander Kevin',
-        'Ignatius Odi'
+    const [pengganti, setPengganti] = useState([
+        {
+            nama: 'Michael Kevin',
+            nik: 2
+        },
+        {
+            nama: 'Alexander Kevin',
+            nik: 3
+        },
     ])
+
+    const fetchPengganti = async () => {
+        const res = await http.get('/izin/pengganti')
+        setPengganti(res.data.karyawan)
+    }
+
+    // useEffect(() => {
+    //     fetchPengganti()
+    // }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -89,9 +103,9 @@ function IzinCuti(){
                             <div className="bg-white rounded-lg">
                                 <Select name="pengganti">
                                     {
-                                        karyawan.map((k,index)=>{
+                                        pengganti.map((p,index)=>{
                                             return(
-                                                <option value={2} key={index}>{k}</option>
+                                                <option value={p.nik} key={index}>{p.nama}</option>
                                             )
                                         })
                                     }
