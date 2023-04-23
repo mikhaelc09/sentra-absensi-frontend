@@ -7,8 +7,34 @@ import {
 } from '@chakra-ui/react'
 import Logo from '../assets/images/logo_white.png'
 import InputPassword from '../components/InputPassword'
+import { useNavigate } from 'react-router-dom'
+import { http } from '../utils'
   
 function ResetPassPage(){
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const formData = new FormData(form)
+
+        const data = {
+            password: formData.get('password'),
+            confpass: formData.get('confpass'),
+        }
+        console.log(data)
+
+        navigate('/')
+
+        const res = await http.post('/reset-password', data)
+        console.log(res.data)
+
+        if(res.status==200){
+            navigate('/')
+        }
+    }
+
     return(
         <div className='h-screen w-screen relative'>
             <div className="h-1/2 bg-primary" />
@@ -25,15 +51,17 @@ function ResetPassPage(){
                 <Card className='mt-4 w-80'>
                     <CardBody>
                         <p className='text-2xl text-primary font-medium mb-5'>Reset Password</p>
-                        <FormControl className='mb-2'>
-                            <FormLabel>Password Baru</FormLabel>
-                            <InputPassword />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Konfirmasi Password</FormLabel>
-                            <InputPassword />
-                        </FormControl>
-                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Reset</Button>
+                        <form method='post' onSubmit={handleSubmit}>
+                            <FormControl className='mb-2'>
+                                <FormLabel>Password Baru</FormLabel>
+                                <InputPassword name={'password'} />
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>Konfirmasi Password</FormLabel>
+                                <InputPassword name={'confpass'}  />
+                            </FormControl>
+                            <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full'>Reset</Button>
+                        </form>
                     </CardBody>
                 </Card>
                 <p className='text-sm text-primary mt-3'>©️ Sentra Medika Surabaya</p>

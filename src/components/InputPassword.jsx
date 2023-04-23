@@ -2,7 +2,7 @@ import { useState } from "react"
 import { InputGroup, Input, InputRightElement, Button } from "@chakra-ui/react"
 import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi'
 
-function InputPassword() {
+function InputPassword(props) {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
   
@@ -10,6 +10,7 @@ function InputPassword() {
       <InputGroup size='md'>
         <Input
           type={show ? 'text' : 'password'}
+          name={props.name}
         />
         <InputRightElement className="mr-2">
           <span onClick={handleClick}>

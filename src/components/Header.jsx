@@ -4,10 +4,16 @@ import {
 } from '@chakra-ui/react'
 import { HiMenuAlt2, HiUserCircle, HiHome, HiDocumentText, HiCalendar, HiLogout } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
+import { eraseCookie } from '../utils'
 
 function Header(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
+
+    const logout = () => {
+        eraseCookie('token')
+        navigate('/')
+    }
 
     return(
         <div className="w-screen bg-primary text-white p-5">
@@ -46,7 +52,7 @@ function Header(props){
                             <HiCalendar className="text-3xl" />
                             <p className="ml-3 my-auto">Pengajuan Izin</p>
                         </div>
-                        <div className="flex my-4" onClick={ ()=>{ navigate('/') } }>
+                        <div className="flex my-4" onClick={ logout }>
                             <HiLogout className="text-3xl" />
                             <p className="ml-3 my-auto">Logout</p>
                         </div>

@@ -9,12 +9,32 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import Logo from '../assets/images/logo_white.png'
+import { http } from '../utils';
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
-    const login = () => {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const formData = new FormData(form)
+
+        const data = {
+            email: formData.get('email'),
+            password: formData.get('password'),
+        }
+        console.log(data)
+
         navigate('/absensi')
+
+        const res = await http.post('/login', data)
+        console.log(res.data)
+
+        // if(res.status==200){
+        //     navigate('/absensi')
+        // }
     }
 
     return(
@@ -33,19 +53,21 @@ function LoginPage(){
                 <Card className='mt-4 w-80'>
                     <CardBody>
                         <p className='text-2xl text-primary font-medium mb-5'>Login</p>
-                        <FormControl className='mb-2'>
-                            <FormLabel>Email</FormLabel>
-                            <Input type='email' />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Password</FormLabel>
-                            <Input type='password' />
-                            <FormHelperText 
-                                className='text-right' 
-                                onClick={onOpen}
-                            >Lupa password?</FormHelperText>
-                        </FormControl>
-                        <Button colorScheme='primary' className='bg-primary mt-5 w-full' onClick={login}>Login</Button>
+                        <form method='post' onSubmit={handleSubmit}>
+                            <FormControl className='mb-2'>
+                                <FormLabel>Email</FormLabel>
+                                <Input type='email' name='email' />
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>Password</FormLabel>
+                                <Input type='password' name='password' />
+                                <FormHelperText 
+                                    className='text-right' 
+                                    onClick={onOpen}
+                                >Lupa password?</FormHelperText>
+                            </FormControl>
+                            <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full'>Login</Button>
+                        </form>
                     </CardBody>
                 </Card>
                 <p className='text-sm text-primary mt-3'>©️ Sentra Medika Surabaya</p>
