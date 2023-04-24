@@ -41,9 +41,9 @@ function RiwayatPage(){
         setIzin(res.data.izin)
     }
 
-    // useEffect(() => {
-    //     fetchIzin()
-    // }, [])
+    useEffect(() => {
+        fetchIzin()
+    }, [])
 
     return(
         <div className="w-screen h-full bg-gray">

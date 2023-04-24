@@ -31,9 +31,9 @@ function IzinCuti(){
         setPengganti(res.data.karyawan)
     }
 
-    // useEffect(() => {
-    //     fetchPengganti()
-    // }, [])
+    useEffect(() => {
+        fetchPengganti()
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -52,6 +52,10 @@ function IzinCuti(){
 
         const res = await http.post('/izin', data)
         console.log(res.data.izin)
+
+        if(res.status==201){
+            navigate('/izin')
+        }
     }
 
     return(

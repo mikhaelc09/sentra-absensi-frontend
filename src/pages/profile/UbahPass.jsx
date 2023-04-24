@@ -29,9 +29,9 @@ function UbahPass(){
         const res = await http.post('/profile/change-password', data)
         console.log(res.data)
 
-        // if(res.status==200){
-        //     navigate('/profil')
-        // }
+        if(res.status==200){
+            navigate('/profil')
+        }
     }
 
     return(

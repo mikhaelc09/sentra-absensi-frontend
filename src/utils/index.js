@@ -1,8 +1,5 @@
 import axios from 'axios'
-import { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
-
-const { user } = useContext(UserContext)
+import Cookies from 'js-cookie'
 
 const http = axios.create({
     withCredentials: true,
@@ -11,7 +8,7 @@ const http = axios.create({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
-        'x-auth-token': user.token
+        'x-auth-token': Cookies.get('token')
     }
 })
 

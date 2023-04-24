@@ -13,7 +13,7 @@ function Header(props){
     const navigate = useNavigate()
 
     const { user, setUser } = useContext(UserContext)
-    console.log(user)
+    // console.log(user)
 
     const logout = async () => {
         setUser()

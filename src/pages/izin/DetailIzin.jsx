@@ -24,9 +24,9 @@ function DetailIzinPage(){
         setIzin(res.data.izin)
     }
 
-    // useEffect(() => {
-    //     fetchIzin()
-    // }, [])
+    useEffect(() => {
+        fetchIzin()
+    }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">

@@ -11,8 +11,7 @@ import { http } from "../../utils"
 
 function IzinMCU(){
     const navigate = useNavigate()
-    const [nama, setNama] = useState('Mikhael Chris')
-    const [divisi, setDivisi] = useState('Admin')
+    const { user } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -31,6 +30,10 @@ function IzinMCU(){
 
         const res = await http.post('/izin', data)
         console.log(res.data.izin)
+
+        if(res.status==201){
+            navigate('/izin')
+        }
     }
 
     return(
@@ -43,12 +46,12 @@ function IzinMCU(){
                             <tr>
                                 <td className="px-2">Nama</td>
                                 <td className="px-1">:</td>
-                                <td className="px-2">{nama}</td>
+                                <td className="px-2">{user.nama}</td>
                             </tr>
                             <tr>
                                 <td className="px-2">Divisi</td>
                                 <td className="px-1">:</td>
-                                <td className="px-2">{divisi}</td>
+                                <td className="px-2">{user.divisi}</td>
                             </tr>
                         </tbody>
                     </table>
