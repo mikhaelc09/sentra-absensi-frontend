@@ -33,7 +33,12 @@ function LoginPage(){
         // console.log(res.data)
 
         if(res.status==200){
-            setUser(res.data.user)
+            setUser({
+                nama: res.data.user.nama,
+                nik: res.data.user.nik,
+                divisi: res.data.user.divisi,
+                token: res.data.token
+            })
             navigate('/absensi')
         }
     }

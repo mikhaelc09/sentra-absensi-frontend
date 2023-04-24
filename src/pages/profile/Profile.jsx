@@ -22,9 +22,9 @@ function ProfilePage(){
         setUser(res.data.karyawan)
     }
 
-    // useEffect(() => {
-    //     fetchKaryawan()
-    // }, [])
+    useEffect(() => {
+        fetchKaryawan()
+    }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">

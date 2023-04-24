@@ -5,6 +5,7 @@ export const UserContext = createContext({
         nik: '',
         nama: '',
         divisi: '',
+        token: ''
     },
     setUser: () => {}
 })
