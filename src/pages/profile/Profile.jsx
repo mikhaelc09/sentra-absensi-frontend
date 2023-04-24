@@ -28,7 +28,7 @@ function ProfilePage(){
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Profil Saya' subtitle='' />
+            <Header title='Profil Saya' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <Card>
                     <CardBody>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {
     Input, Textarea, Select,
@@ -8,12 +8,12 @@ import {
 
 import Header from "../../components/Header"
 import { http } from "../../utils"
+import { UserContext } from "../../context/UserContext"
 
 function IzinCuti(){
     const navigate = useNavigate()
     const [cuti, setCuti] = useState(8)
-    const [nama, setNama] = useState('Mikhael Chris')
-    const [divisi, setDivisi] = useState('Admin')
+    const { user } = useContext(UserContext)
 
     const [pengganti, setPengganti] = useState([
         {
@@ -56,7 +56,7 @@ function IzinCuti(){
 
     return(
         <div className="w-screen h-full bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Pengajuan Izin Cuti' subtitle='' />
+            <Header title='Pengajuan Izin Cuti' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <div className="bg-primary px-4 py-1 rounded-full m-auto">
                     <p className="text-white text-center">Sisa cuti Anda tahun ini: {cuti} hari</p>
@@ -67,12 +67,12 @@ function IzinCuti(){
                             <tr>
                                 <td className="px-2">Nama</td>
                                 <td className="px-1">:</td>
-                                <td className="px-2">{nama}</td>
+                                <td className="px-2">{user.nama}</td>
                             </tr>
                             <tr>
                                 <td className="px-2">Divisi</td>
                                 <td className="px-1">:</td>
-                                <td className="px-2">{divisi}</td>
+                                <td className="px-2">{user.divisi}</td>
                             </tr>
                         </tbody>
                     </table>

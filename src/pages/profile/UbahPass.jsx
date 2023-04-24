@@ -36,7 +36,7 @@ function UbahPass(){
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Ubah Password' subtitle='' />
+            <Header title='Ubah Password' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <form method="post" onSubmit={handleSubmit}>
                     <FormControl className='mb-2'>

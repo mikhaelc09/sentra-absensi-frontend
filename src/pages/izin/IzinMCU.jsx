@@ -35,7 +35,7 @@ function IzinMCU(){
 
     return(
         <div className="w-screen h-full bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Pengajuan MCU' subtitle='' />
+            <Header title='Pengajuan MCU' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <div className="nama mt-5 font-medium -ml-2">
                     <table>

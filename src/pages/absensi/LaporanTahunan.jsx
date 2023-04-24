@@ -8,7 +8,7 @@ function LaporanTahunan(){
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Laporan Absensi Tahunan' subtitle='' />
+            <Header title='Laporan Absensi Tahunan' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <div className="flex gap-x-3">
                     <div className="bg-white rounded-lg w-2/3">

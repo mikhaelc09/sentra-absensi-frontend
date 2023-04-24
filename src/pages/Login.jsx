@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import {
     Input,
@@ -10,10 +10,13 @@ import {
 } from '@chakra-ui/react'
 import Logo from '../assets/images/logo_white.png'
 import { http } from '../utils';
+import { UserContext } from '../context/UserContext';
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
+
+    const { setUser } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,16 +28,14 @@ function LoginPage(){
             email: formData.get('email'),
             password: formData.get('password'),
         }
-        console.log(data)
 
-        navigate('/absensi')
+        const res = await http.post('/auth/login', data)
+        // console.log(res.data)
 
-        const res = await http.post('/login', data)
-        console.log(res.data)
-
-        // if(res.status==200){
-        //     navigate('/absensi')
-        // }
+        if(res.status==200){
+            setUser(res.data.user)
+            navigate('/absensi')
+        }
     }
 
     return(

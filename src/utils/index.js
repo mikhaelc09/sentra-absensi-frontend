@@ -11,10 +11,6 @@ const getCookie = (name) => {
     return null;
 }
 
-const eraseCookie = (name) => {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
 const http = axios.create({
     baseURL:"http://localhost:3000/api/v1",
     headers:{
@@ -25,5 +21,5 @@ const http = axios.create({
 })
 
 export {
-    http, getCookie, eraseCookie
+    http, getCookie
 }

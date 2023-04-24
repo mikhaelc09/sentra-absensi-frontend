@@ -11,8 +11,8 @@ function AbsensiCard(props){
             </div>
             <div className="icon w-1/6 my-auto ml-auto">
                 {
-                    props.valid==true && <HiOutlineCheckCircle className='text-3xl text-green-700' /> ||
-                    props.valid==false && <HiOutlineXCircle className='text-3xl text-red-700' />
+                    props.status==1 && <HiOutlineCheckCircle className='text-3xl text-green-700' /> ||
+                    props.status==0 && <HiOutlineXCircle className='text-3xl text-red-700' />
                 }
             </div>
         </div>

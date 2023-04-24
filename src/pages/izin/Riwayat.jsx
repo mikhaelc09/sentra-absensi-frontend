@@ -47,7 +47,7 @@ function RiwayatPage(){
 
     return(
         <div className="w-screen h-full bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Riwayat Pengajuan Izin' subtitle='' />
+            <Header title='Riwayat Pengajuan Izin' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <Menu className='ml-auto'>
                     <MenuButton as={Button} leftIcon={<HiPlus className='text-white' />} className='bg-primary text-white ml-auto' colorScheme='primary'>

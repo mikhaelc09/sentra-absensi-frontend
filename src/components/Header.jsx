@@ -4,14 +4,20 @@ import {
 } from '@chakra-ui/react'
 import { HiMenuAlt2, HiUserCircle, HiHome, HiDocumentText, HiCalendar, HiLogout } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
-import { eraseCookie } from '../utils'
+import { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
+import { http } from '../utils'
 
 function Header(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
 
-    const logout = () => {
-        eraseCookie('token')
+    const { user, setUser } = useContext(UserContext)
+    console.log(user)
+
+    const logout = async () => {
+        setUser()
+        await http.post('/auth/logout')
         navigate('/')
     }
 
@@ -21,7 +27,7 @@ function Header(props){
                 <HiMenuAlt2 className="w-1/8 text-white text-3xl" onClick={onOpen} />
                 <div className="w-7/8 ml-3 text-left">
                     <p className="text-lg">Selamat datang,</p>
-                    <p className="font-semibold text-xl">{props.user}</p>
+                    <p className="font-semibold text-xl">{user.nama.toUpperCase()}</p>
                 </div>
             </div>
             <div className="h-24 mt-3 flex flex-col">
@@ -37,7 +43,7 @@ function Header(props){
                     <DrawerCloseButton className="text-white" />
                     <DrawerHeader className="flex py-auto bg-primary text-white" onClick={ ()=>{ navigate('/profil') } }>
                         <HiUserCircle className="text-3xl" />
-                        <p className="ml-3">{props.user}</p>
+                        <p className="ml-3">{user.nama.toUpperCase()}</p>
                     </DrawerHeader>
                     <DrawerBody className="bg-primary text-white">
                         <div className="flex my-4" onClick={ ()=>{ navigate('/absensi') } }>

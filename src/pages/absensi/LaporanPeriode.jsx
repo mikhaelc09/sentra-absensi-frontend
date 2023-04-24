@@ -33,7 +33,7 @@ function LaporanPeriode(){
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header user='MIKHAEL CHRIS' title='Laporan Absensi' subtitle='Periode 26 Maret - 25 April 2023' />
+            <Header title='Laporan Absensi' subtitle='Periode 26 Maret - 25 April 2023' />
             <div className="content p-10 text-left flex flex-col">
                 <Card className="p-2">
                     <Table className="w-full">
