@@ -13,6 +13,7 @@ import UbahPass from './pages/profile/UbahPass';
 import LaporanPeriode from './pages/absensi/LaporanPeriode';
 import LaporanTahunan from './pages/absensi/LaporanTahunan';
 import DetailIzinPage from './pages/izin/DetailIzin';
+import { UserContextProvider } from './context/UserContext';
 
 const theme = extendTheme({
   colors: {
@@ -25,19 +26,21 @@ const theme = extendTheme({
 function App() {
   return(
     <ChakraProvider>
-      <Routes>
-        <Route exact path="/" element={<LoginPage />} />
-        <Route exact path="/reset-password" element={<ResetPassPage />} />
-        <Route exact path="/absensi" element={<HomePage />} />
-        <Route exact path="/absensi/laporan/periode" element={<LaporanPeriode />} />
-        <Route exact path="/absensi/laporan/tahunan" element={<LaporanTahunan />} />
-        <Route exact path="/izin" element={<RiwayatPage /> } />
-        <Route exact path="/izin/:id_izin" element={<DetailIzinPage /> } />
-        <Route exact path="/izin/cuti" element={<IzinCuti /> } />
-        <Route exact path="/izin/mcu" element={<IzinMCU /> } />
-        <Route exact path="/profil" element={<ProfilePage /> } />
-        <Route exact path="/profil/password" element={<UbahPass /> } />
-      </Routes>
+      <UserContextProvider>
+        <Routes>
+          <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/reset-password" element={<ResetPassPage />} />
+          <Route exact path="/absensi" element={<HomePage />} />
+          <Route exact path="/absensi/laporan/periode" element={<LaporanPeriode />} />
+          <Route exact path="/absensi/laporan/tahunan" element={<LaporanTahunan />} />
+          <Route exact path="/izin" element={<RiwayatPage /> } />
+          <Route exact path="/izin/:id_izin" element={<DetailIzinPage /> } />
+          <Route exact path="/izin/cuti" element={<IzinCuti /> } />
+          <Route exact path="/izin/mcu" element={<IzinMCU /> } />
+          <Route exact path="/profil" element={<ProfilePage /> } />
+          <Route exact path="/profil/password" element={<UbahPass /> } />
+        </Routes>
+      </UserContextProvider>
     </ChakraProvider>
     
   )

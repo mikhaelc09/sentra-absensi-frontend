@@ -13,11 +13,10 @@ function Header(props){
     const navigate = useNavigate()
 
     const { user, setUser } = useContext(UserContext)
-    // console.log(user)
 
     const logout = async () => {
-        setUser()
         await http.post('/auth/logout')
+        setUser()
         navigate('/')
     }
 
@@ -27,7 +26,7 @@ function Header(props){
                 <HiMenuAlt2 className="w-1/8 text-white text-3xl" onClick={onOpen} />
                 <div className="w-7/8 ml-3 text-left">
                     <p className="text-lg">Selamat datang,</p>
-                    <p className="font-semibold text-xl">{user.nama.toUpperCase()}</p>
+                    <p className="font-semibold text-xl">{user.nama}</p>
                 </div>
             </div>
             <div className="h-24 mt-3 flex flex-col">
@@ -43,7 +42,7 @@ function Header(props){
                     <DrawerCloseButton className="text-white" />
                     <DrawerHeader className="flex py-auto bg-primary text-white" onClick={ ()=>{ navigate('/profil') } }>
                         <HiUserCircle className="text-3xl" />
-                        <p className="ml-3">{user.nama.toUpperCase()}</p>
+                        <p className="ml-3">{user.nama}</p>
                     </DrawerHeader>
                     <DrawerBody className="bg-primary text-white">
                         <div className="flex my-4" onClick={ ()=>{ navigate('/absensi') } }>
