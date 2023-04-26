@@ -15,8 +15,9 @@ import { UserContext } from '../../context/UserContext';
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
-
     const { setUser } = useContext(UserContext)
+
+    const [clickForgot, setClickForgot] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -44,23 +45,27 @@ function LoginPage(){
     }
 
     const handleSubmitForgotPass = async (e) => {
-        e.preventDefault()
+        if(!clickForgot){
+            setClickForgot(true)
 
-        const form = e.target
-        const formData = new FormData(form)
+            e.preventDefault()
 
-        const data = {
-            email: formData.get('email-reset')
-        }
+            const form = e.target
+            const formData = new FormData(form)
 
-        const res = await http.post('/auth/forgot-password', data)
-        
-        if(res.status==200){
-            navigate('/')
-            console.log('Email sent')
-        }
-        else{
-            console.log(res.data.message)
+            const data = {
+                email: formData.get('email-reset')
+            }
+
+            const res = await http.post('/auth/forgot-password', data)
+            
+            if(res.status==200){
+                navigate('/')
+                console.log('Email sent')
+            }
+            else{
+                console.log(res.data.message)
+            }
         }
     }
 
