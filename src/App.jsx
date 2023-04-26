@@ -2,8 +2,10 @@ import './App.css'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import LoginPage from './pages/Login';
-import ResetPassPage from './pages/ResetPass';
+import LoginPage from './pages/auth/Login';
+import ResetPassPage from './pages/auth/ResetPass';
+import CheckToken from './pages/auth/CheckToken';
+import InvalidToken from './pages/auth/InvalidToken';
 import HomePage from './pages/absensi/Home';
 import RiwayatPage from './pages/izin/Riwayat';
 import IzinCuti from './pages/izin/IzinCuti';
@@ -13,7 +15,7 @@ import UbahPass from './pages/profile/UbahPass';
 import LaporanPeriode from './pages/absensi/LaporanPeriode';
 import LaporanTahunan from './pages/absensi/LaporanTahunan';
 import DetailIzinPage from './pages/izin/DetailIzin';
-import { UserContextProvider } from './context/UserContext';
+import { UserContextProvider } from './context/UserContext'
 
 const theme = extendTheme({
   colors: {
@@ -29,7 +31,9 @@ function App() {
       <UserContextProvider>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
-          <Route exact path="/reset-password" element={<ResetPassPage />} />
+          <Route exact path="/reset-password/:nik" element={<ResetPassPage />} />
+          <Route exact path="/check-token" element={<CheckToken />} />
+          <Route exact path="/invalid-token" element={<InvalidToken />} />
           <Route exact path="/absensi" element={<HomePage />} />
           <Route exact path="/absensi/laporan/periode" element={<LaporanPeriode />} />
           <Route exact path="/absensi/laporan/tahunan" element={<LaporanTahunan />} />

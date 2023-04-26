@@ -5,13 +5,14 @@ import {
     Card, CardBody,
     Button
 } from '@chakra-ui/react'
-import Logo from '../assets/images/logo_white.png'
-import InputPassword from '../components/InputPassword'
-import { useNavigate } from 'react-router-dom'
-import { http } from '../utils'
+import Logo from '../../assets/images/logo_white.png'
+import InputPassword from '../../components/InputPassword'
+import { useNavigate, useParams } from 'react-router-dom'
+import { http } from '../../utils'
   
 function ResetPassPage(){
     const navigate = useNavigate()
+    const { nik } = useParams()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,15 +21,14 @@ function ResetPassPage(){
         const formData = new FormData(form)
 
         const data = {
+            nik: nik,
             password: formData.get('password'),
             confpass: formData.get('confpass'),
         }
         console.log(data)
 
-        navigate('/')
-
-        const res = await http.post('/reset-password', data)
-        console.log(res.data)
+        const res = await http.post('/auth/reset-password', data)
+        // console.log(res.data)
 
         if(res.status==200){
             navigate('/')

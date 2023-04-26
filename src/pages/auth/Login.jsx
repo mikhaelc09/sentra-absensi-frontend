@@ -8,9 +8,9 @@ import {
     Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, ModalFooter,
     useDisclosure
 } from '@chakra-ui/react'
-import Logo from '../assets/images/logo_white.png'
-import { http } from '../utils';
-import { UserContext } from '../context/UserContext';
+import Logo from '../../assets/images/logo_white.png'
+import { http } from '../../utils';
+import { UserContext } from '../../context/UserContext';
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,6 +40,27 @@ function LoginPage(){
                 token: res.data.token
             })
             navigate('/absensi')
+        }
+    }
+
+    const handleSubmitForgotPass = async (e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const formData = new FormData(form)
+
+        const data = {
+            email: formData.get('email-reset')
+        }
+
+        const res = await http.post('/auth/forgot-password', data)
+        
+        if(res.status==200){
+            navigate('/')
+            console.log('Email sent')
+        }
+        else{
+            console.log(res.data.message)
         }
     }
 
@@ -84,11 +105,13 @@ function LoginPage(){
                     <ModalHeader>Lupa Password?</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody className='mb-5'>
-                        <FormControl>
-                            <Input type='email' _placeholder={'Masukkan email'} />
-                            <FormHelperText>Link reset password akan dikirimkan ke email yang diberikan</FormHelperText>
-                        </FormControl>
-                        <Button colorScheme='primary' className='bg-primary mt-5 w-full'>Kirim Email</Button>
+                        <form method='post' onSubmit={handleSubmitForgotPass}>
+                            <FormControl>
+                                <Input type='email' name='email-reset' _placeholder={'Masukkan email'} />
+                                <FormHelperText>Link reset password akan dikirimkan ke email yang diberikan</FormHelperText>
+                            </FormControl>
+                            <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full'>Kirim Email</Button>
+                        </form>
                     </ModalBody>
                 </ModalContent>
             </Modal>
