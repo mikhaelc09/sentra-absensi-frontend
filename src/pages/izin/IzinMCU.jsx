@@ -11,7 +11,7 @@ import { http } from "../../utils"
 
 function IzinMCU(){
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const handleSubmit = async (e) => {
         e.preventDefault()

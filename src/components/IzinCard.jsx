@@ -17,11 +17,11 @@ function IzinCard(props){
                     <div className="badge ml-auto">
                         {
                             izin.jenis==1 && 
-                            <p className="bg-sky-100 text-primary font-medium rounded-full px-4 py-1">MCU</p>
+                            <p className="bg-rose-100 text-primary font-medium rounded-full px-4 py-1">Cuti</p>
                         }
                         {
                             izin.jenis==2 && 
-                            <p className="bg-rose-100 text-primary font-medium rounded-full px-4 py-1">Cuti</p>
+                            <p className="bg-sky-100 text-primary font-medium rounded-full px-4 py-1">MCU</p>
                         }
                     </div>
                 </div>

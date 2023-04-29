@@ -17,7 +17,7 @@ function Header(props){
 
     const logout = async () => {
         await http.post('/auth/logout')
-        setUser()
+        localStorage.removeItem('user')
         navigate('/')
     }
 

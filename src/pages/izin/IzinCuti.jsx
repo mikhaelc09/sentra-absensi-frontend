@@ -8,12 +8,11 @@ import {
 
 import Header from "../../components/Header"
 import { http } from "../../utils"
-import { UserContext } from "../../context/UserContext"
 
 function IzinCuti(){
     const navigate = useNavigate()
     const [cuti, setCuti] = useState(8)
-    const { user } = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const [pengganti, setPengganti] = useState([
         {
@@ -28,6 +27,7 @@ function IzinCuti(){
 
     const fetchPengganti = async () => {
         const res = await http.get('/izin/pengganti')
+        console.log(res)
         setPengganti(res.data.karyawan)
     }
 

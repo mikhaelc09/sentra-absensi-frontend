@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const http = axios.create({
+export const http = axios.create({
     withCredentials: true,
     baseURL:"http://localhost:3000/api/v1",
     headers:{
@@ -11,7 +11,3 @@ const http = axios.create({
         'x-auth-token': Cookies.get('token')
     }
 })
-
-export {
-    http
-}
