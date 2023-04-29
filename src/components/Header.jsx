@@ -12,7 +12,8 @@ function Header(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
 
-    const { user, setUser } = useContext(UserContext)
+    // const { user, setUser } = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const logout = async () => {
         await http.post('/auth/logout')

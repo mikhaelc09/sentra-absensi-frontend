@@ -46,7 +46,7 @@ function RiwayatPage(){
     }, [])
 
     return(
-        <div className="w-screen h-full bg-gray">
+        <div className="w-screen h-full min-h-screen bg-gray">
             <Header title='Riwayat Pengajuan Izin' subtitle='' />
             <div className="content p-10 text-left flex flex-col">
                 <Menu className='ml-auto'>
