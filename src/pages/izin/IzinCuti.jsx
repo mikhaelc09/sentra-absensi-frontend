@@ -12,7 +12,7 @@ import { http } from "../../utils"
 function IzinCuti(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [cuti, setCuti] = useState(8)
+    const [sisaCuti, setSisaCuti] = useState(8)
     const user = JSON.parse(localStorage.getItem('user'))
 
     const [pengganti, setPengganti] = useState([
@@ -28,13 +28,13 @@ function IzinCuti(){
 
     const fetchPengganti = async () => {
         const res = await http.get('/izin/pengganti')
-        console.log(res)
         setPengganti(res.data.karyawan)
     }
 
-    useEffect(() => {
-        fetchPengganti()
-    }, [])
+    const fetchSisaCuti = async () => {
+        const res = await http.get('/izin/sisa-cuti')
+        setSisaCuti(res.data.sisa_cuti)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -65,6 +65,8 @@ function IzinCuti(){
         }
         else{
             setIsLoggedIn(true)
+            fetchPengganti()
+            fetchSisaCuti()
         }
     })
 
@@ -76,7 +78,7 @@ function IzinCuti(){
             }
             <div className="content p-10 text-left flex flex-col">
                 <div className="bg-primary px-4 py-1 rounded-full m-auto">
-                    <p className="text-white text-center">Sisa cuti Anda tahun ini: {cuti} hari</p>
+                    <p className="text-white text-center">Sisa cuti Anda tahun ini: { sisaCuti } hari</p>
                 </div>
                 <div className="nama mt-5 font-medium -ml-2">
                     {
