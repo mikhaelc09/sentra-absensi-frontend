@@ -1,7 +1,4 @@
 import { useEffect } from 'react'
-import {
-    Card, CardBody,
-} from '@chakra-ui/react'
 import Logo from '../../assets/images/logo_white.png'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { http } from '../../utils'
@@ -27,7 +24,12 @@ function CheckToken(){
     }
 
     useEffect(() => {
-        checkResetToken()
+        if(JSON.parse(localStorage.getItem('user'))!=null){
+            navigate('/absensi')
+        }
+        else{
+            checkResetToken()
+        }
     }, [])
 
     return(
@@ -45,7 +47,7 @@ function CheckToken(){
                 </div>
             </div>
             <div className="h-1/2 bg-gray flex flex-col">
-                <div className="mx-auto mt-5">
+                <div className="mx-auto mt-10">
                     <p className='text-lg text-primary'>Anda akan segera dialihkan ke halaman yang sesuai</p>
                     <p className='text-sm text-primary mt-3'>©️ Sentra Medika Surabaya</p>
                 </div>

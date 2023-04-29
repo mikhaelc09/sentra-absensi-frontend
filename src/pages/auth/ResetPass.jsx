@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Input,
     FormControl, FormLabel, FormErrorMessage, FormHelperText,
@@ -34,6 +34,15 @@ function ResetPassPage(){
             navigate('/')
         }
     }
+
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            navigate('/absensi')
+        }
+    })
 
     return(
         <div className='h-screen w-screen relative'>

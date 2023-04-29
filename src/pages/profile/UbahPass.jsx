@@ -11,6 +11,7 @@ import { http } from "../../utils"
 
 function UbahPass(){
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -34,9 +35,21 @@ function UbahPass(){
         }
     }
 
+    useEffect(()=>{
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+        }
+    })
+
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title='Ubah Password' subtitle='' />
+            {
+                isLoggedIn && 
+                <Header title='Ubah Password' subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <form method="post" onSubmit={handleSubmit}>
                     <FormControl className='mb-2'>

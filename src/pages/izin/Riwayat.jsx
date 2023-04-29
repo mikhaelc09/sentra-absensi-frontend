@@ -9,6 +9,7 @@ import { http } from '../../utils/index'
 
 function RiwayatPage(){
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [izin, setIzin] = useState([
         {
             id: 1,
@@ -42,12 +43,21 @@ function RiwayatPage(){
     }
 
     useEffect(() => {
-        fetchIzin()
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+            fetchIzin()
+        }
     }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title='Riwayat Pengajuan Izin' subtitle='' />
+            {
+                isLoggedIn &&
+                <Header title='Riwayat Pengajuan Izin' subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <Menu className='ml-auto'>
                     <MenuButton as={Button} leftIcon={<HiPlus className='text-white' />} className='bg-primary text-white ml-auto' colorScheme='primary'>

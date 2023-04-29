@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Card, CardBody,
     Button
@@ -8,6 +8,12 @@ import { useNavigate } from 'react-router-dom'
   
 function InvalidToken(){
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))!=null){
+            navigate('/absensi')
+        }
+    })
 
     return(
         <div className='h-screen w-screen relative'>

@@ -1,14 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, Select } from '@chakra-ui/react'
 
 import Header from "../../components/Header"
 
 function LaporanTahunan(){
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [tahun, setTahun] = useState([2020, 2021, 2022, 2023, 2024, 2025])
+
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+        }
+    })
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title='Laporan Absensi Tahunan' subtitle='' />
+            {
+                isLoggedIn &&
+                <Header title='Laporan Absensi Tahunan' subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <div className="flex gap-x-3">
                     <div className="bg-white rounded-lg w-2/3">

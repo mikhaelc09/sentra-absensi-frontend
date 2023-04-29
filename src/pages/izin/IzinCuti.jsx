@@ -11,6 +11,7 @@ import { http } from "../../utils"
 
 function IzinCuti(){
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [cuti, setCuti] = useState(8)
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -58,28 +59,43 @@ function IzinCuti(){
         }
     }
 
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+        }
+    })
+
     return(
         <div className="w-screen h-full bg-gray">
-            <Header title='Pengajuan Izin Cuti' subtitle='' />
+            {
+                isLoggedIn && 
+                <Header title='Pengajuan Izin Cuti' subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <div className="bg-primary px-4 py-1 rounded-full m-auto">
                     <p className="text-white text-center">Sisa cuti Anda tahun ini: {cuti} hari</p>
                 </div>
                 <div className="nama mt-5 font-medium -ml-2">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td className="px-2">Nama</td>
-                                <td className="px-1">:</td>
-                                <td className="px-2">{user.nama}</td>
-                            </tr>
-                            <tr>
-                                <td className="px-2">Divisi</td>
-                                <td className="px-1">:</td>
-                                <td className="px-2">{user.divisi}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    {
+                        isLoggedIn &&
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className="px-2">Nama</td>
+                                    <td className="px-1">:</td>
+                                    <td className="px-2">{user.nama}</td>
+                                </tr>
+                                <tr>
+                                    <td className="px-2">Divisi</td>
+                                    <td className="px-1">:</td>
+                                    <td className="px-2">{user.divisi}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
                 </div>
                 <div className="forms mt-5">
                     <form method="post" onSubmit={handleSubmit}>

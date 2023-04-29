@@ -3,16 +3,14 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { HiMenuAlt2, HiUserCircle, HiHome, HiDocumentText, HiCalendar, HiLogout } from 'react-icons/hi'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
-import { UserContext } from '../context/UserContext'
 import { http } from '../utils'
 
 function Header(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
 
-    // const { user, setUser } = useContext(UserContext)
     const user = JSON.parse(localStorage.getItem('user'))
 
     const logout = async () => {

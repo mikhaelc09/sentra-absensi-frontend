@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import Header from "../../components/Header"
 import { Table, Thead, Tbody, Tr, Th, Td, Card, CardBody } from "@chakra-ui/react"
 
 function LaporanPeriode(){
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [absensi, setAbsensi] = useState([
         {
             tanggal: 'Senin, 3 April 2023',
@@ -31,9 +32,21 @@ function LaporanPeriode(){
         },
     ])
 
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+        }
+    })
+
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title='Laporan Absensi' subtitle='Periode 26 Maret - 25 April 2023' />
+            {
+                isLoggedIn && 
+                <Header title='Laporan Absensi' subtitle='Periode 26 Maret - 25 April 2023' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <Card className="p-2">
                     <Table className="w-full">

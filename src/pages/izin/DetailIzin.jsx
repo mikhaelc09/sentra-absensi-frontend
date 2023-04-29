@@ -8,6 +8,7 @@ import { http } from '../../utils/index'
 function DetailIzinPage(){
     const navigate = useNavigate()
     const { id_izin } = useParams()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [izin, setIzin] = useState({
         id: 1,
         waktu_mulai: '10 Maret 2023',
@@ -19,18 +20,34 @@ function DetailIzinPage(){
         lokasi: null
     })
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
     const fetchIzin = async () => {
         const res = await http.get(`/izin/${id_izin}`)
-        setIzin(res.data.izin)
+        if(res.data.izin.nik_pengaju != user.nik){
+            navigate(-1)
+        }
+        else{
+            setIzin(res.data.izin)
+        }
     }
 
     useEffect(() => {
-        fetchIzin()
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+            fetchIzin()
+        }
     }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title={`Detail Izin ${izin.jenis}`} subtitle='' />
+            {
+                isLoggedIn && 
+                <Header title={`Detail Izin ${izin.jenis}`} subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <Card>
                     <CardBody>

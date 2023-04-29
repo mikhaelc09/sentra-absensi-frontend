@@ -6,6 +6,7 @@ import LoginPage from './pages/auth/Login';
 import ResetPassPage from './pages/auth/ResetPass';
 import CheckToken from './pages/auth/CheckToken';
 import InvalidToken from './pages/auth/InvalidToken';
+import NotFound from './pages/auth/404Page';
 import HomePage from './pages/absensi/Home';
 import RiwayatPage from './pages/izin/Riwayat';
 import IzinCuti from './pages/izin/IzinCuti';
@@ -43,6 +44,7 @@ function App() {
           <Route exact path="/izin/mcu" element={<IzinMCU /> } />
           <Route exact path="/profil" element={<ProfilePage /> } />
           <Route exact path="/profil/password" element={<UbahPass /> } />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </UserContextProvider>
     </ChakraProvider>

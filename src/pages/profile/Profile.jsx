@@ -6,6 +6,7 @@ import { http } from "../../utils"
 
 function ProfilePage(){
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const [user, setUser] = useState({
         nama: 'Mikhael Chris',
@@ -23,12 +24,21 @@ function ProfilePage(){
     }
 
     useEffect(() => {
-        fetchKaryawan()
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+            fetchKaryawan()
+        }
     }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
-            <Header title='Profil Saya' subtitle='' />
+            {
+                isLoggedIn && 
+                <Header title='Profil Saya' subtitle='' />
+            }
             <div className="content p-10 text-left flex flex-col">
                 <Card>
                     <CardBody>

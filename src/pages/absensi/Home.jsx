@@ -17,6 +17,7 @@ import { http } from '../../utils'
 function HomePage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -54,11 +55,6 @@ function HomePage(){
         setRiwayat(res.data.riwayat)
     }
 
-    // useEffect(() => {
-    //     fetchOverview()
-    //     fetchRiwayat()
-    // }, [])
-
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -79,9 +75,23 @@ function HomePage(){
         }
     }
 
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))==null){
+            navigate('/')
+        }
+        else{
+            setIsLoggedIn(true)
+            // fetchOverview()
+            // fetchRiwayat()
+        }
+    }, [])
+
     return(
         <div className="w-screen h-full bg-gray">
-            <Header title='14:09:16' subtitle='Senin, 3 April 2023' />
+            {
+                isLoggedIn &&
+                <Header title='14:09:16' subtitle='Senin, 3 April 2023' />
+            }
             <div className="content p-10 text-left">
                 <p className="text-xl font-semibold text-primary mb-3">Absensi</p>
                 <Card>

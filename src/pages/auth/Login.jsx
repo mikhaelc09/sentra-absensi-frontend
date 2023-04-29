@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import {
     Input,
@@ -10,13 +10,10 @@ import {
 } from '@chakra-ui/react'
 import Logo from '../../assets/images/logo_white.png'
 import { http } from '../../utils';
-import { UserContext } from '../../context/UserContext';
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
-    const { setUser } = useContext(UserContext)
-
     const [clickForgot, setClickForgot] = useState(false)
 
     const handleSubmit = async (e) => {
@@ -31,15 +28,8 @@ function LoginPage(){
         }
 
         const res = await http.post('/auth/login', data)
-        // console.log(res.data)
 
         if(res.status==200){
-            // setUser({
-            //     nama: res.data.user.nama,
-            //     nik: res.data.user.nik,
-            //     divisi: res.data.user.divisi
-            // })
-            
             localStorage.setItem('user', JSON.stringify(res.data.user))
             navigate('/absensi')
         }
@@ -69,6 +59,12 @@ function LoginPage(){
             }
         }
     }
+
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem('user'))!=null){
+            navigate('/absensi')
+        }
+    })
 
     return(
         <div className='h-screen w-screen relative'>
