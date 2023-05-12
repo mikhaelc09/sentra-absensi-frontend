@@ -79,8 +79,10 @@ function HomePage(){
             const res = await http.post('/absensi', data)
             console.log(res.data)
 
-            if(res.status==200){
-                //alert
+            if(res.status==201){
+                onClose()
+                fetchOverview()
+                fetchRiwayat()
             }
         })
     }
@@ -91,8 +93,8 @@ function HomePage(){
         }
         else{
             setIsLoggedIn(true)
-            // fetchOverview()
-            // fetchRiwayat()
+            fetchOverview()
+            fetchRiwayat()
         }
     }, [])
 
