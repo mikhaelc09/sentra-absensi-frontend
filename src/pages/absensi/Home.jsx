@@ -65,14 +65,24 @@ function HomePage(){
             is_lembur: formData.get('is_lembur'),
             keterangan: formData.get('keterangan'),
         }
-        console.log(data)
-
-        const res = await http.post('/absensi', data)
-        console.log(res.data)
-
-        if(res.status==200){
-            //alert
+        let coord = {
+            lat:0,
+            lng:0,
         }
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            coord.lng = position.coords.longitude
+            coord.lat = position.coords.latitude
+            
+            data.coord = coord
+            console.log(coord)
+
+            const res = await http.post('/absensi', data)
+            console.log(res.data)
+
+            if(res.status==200){
+                //alert
+            }
+        })
     }
 
     useEffect(() => {
