@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import { HiOutlineClock, HiOutlineArrowCircleDown, HiOutlineArrowCircleUp } from 'react-icons/hi'
+import { DateTime } from 'luxon'
+import { useNavigate } from 'react-router-dom'
+import { http } from '../../utils'
 
+import { HiOutlineClock, HiOutlineArrowCircleDown, HiOutlineArrowCircleUp } from 'react-icons/hi'
 import Header from "../../components/Header"
 import { 
     Button,
@@ -11,14 +14,13 @@ import {
     useDisclosure
  } from '@chakra-ui/react'
 import AbsensiCard from '../../components/AbsensiCard'
-import { useNavigate } from 'react-router-dom'
-import { http } from '../../utils'
 
 function HomePage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLembur, setIsLembur] = useState(0)
+    const [currentTime, setCurrentTime] = useState(DateTime.local());
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -106,13 +108,18 @@ function HomePage(){
             fetchOverview()
             fetchRiwayat()
         }
+
+        const interval = setInterval(() => {
+            setCurrentTime(DateTime.local());
+        }, 1000);
+        return () => clearInterval(interval);
     }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
             {
                 isLoggedIn &&
-                <Header title='14:09:16' subtitle='Senin, 3 April 2023' />
+                <Header title={currentTime.toFormat('HH:mm:ss')} subtitle='Senin, 3 April 2023' />
             }
             <div className="content p-10 text-left">
                 <p className="text-xl font-semibold text-primary mb-3">Absensi</p>
