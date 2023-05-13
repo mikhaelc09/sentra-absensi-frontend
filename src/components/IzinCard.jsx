@@ -6,7 +6,7 @@ function IzinCard(props){
     const izin = props.izin
 
     return(
-        <Card className="w-full text-left" onClick={()=>{ navigate(`${izin.id}`) }}>
+        <Card className="w-full text-left" onClick={()=>{ navigate(`/izin/${izin.id}`) }}>
             <CardBody>
                 <div className="flex w-full">
                     <div className="tanggal my-auto">

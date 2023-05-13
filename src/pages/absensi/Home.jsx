@@ -99,7 +99,7 @@ function HomePage(){
     }, [])
 
     return(
-        <div className="w-screen h-full bg-gray">
+        <div className="w-screen h-full min-h-screen bg-gray">
             {
                 isLoggedIn &&
                 <Header title='14:09:16' subtitle='Senin, 3 April 2023' />
