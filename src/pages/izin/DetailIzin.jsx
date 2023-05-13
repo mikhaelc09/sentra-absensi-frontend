@@ -69,15 +69,15 @@ function DetailIzinPage(){
                                     <td className="p-2 align-top">{izin.keterangan}</td>
                                 </tr>
                                 {
-                                    izin.pengganti!=null && 
+                                    izin.jenis=='Cuti' && 
                                     <tr>
                                         <td className="py-2 align-top max-w-full whitespace-nowrap">Pengganti</td>
                                         <td className="p-2 align-top">:</td>
-                                        <td className="p-2 align-top">{izin.pengganti}</td>
+                                        <td className="p-2 align-top">{izin.pengganti!=null ? izin.pengganti : '-'}</td>
                                     </tr>
                                 }
                                 {
-                                    izin.lokasi!=null && 
+                                    izin.jenis=='MCU' && 
                                     <tr>
                                         <td className="py-2 align-top max-w-full whitespace-nowrap">Lokasi</td>
                                         <td className="p-2 align-top">:</td>

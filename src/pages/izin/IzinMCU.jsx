@@ -13,6 +13,7 @@ function IzinMCU(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const user = JSON.parse(localStorage.getItem('user'))
+    const today = new Date().toISOString().split('T')[0]
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -78,19 +79,19 @@ function IzinMCU(){
                         <FormControl   FormControl className='mb-2'>
                             <FormLabel>Lokasi MCU</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Input type='text' name="lokasi" />
+                                <Input type='text' name="lokasi" required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Tanggal Mulai</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Input type='date' name="waktu_mulai" />
+                                <Input type='date' name="waktu_mulai" min={today} required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Tanggal Selesai</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Input type='date' name="waktu_selesai" />
+                                <Input type='date' name="waktu_selesai" min={today} required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>

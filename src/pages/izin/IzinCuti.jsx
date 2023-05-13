@@ -14,6 +14,7 @@ function IzinCuti(){
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [sisaCuti, setSisaCuti] = useState(8)
     const user = JSON.parse(localStorage.getItem('user'))
+    const today = new Date().toISOString().split('T')[0]
 
     const [pengganti, setPengganti] = useState([
         {
@@ -105,25 +106,26 @@ function IzinCuti(){
                         <FormControl className='mb-2'>
                             <FormLabel>Tanggal Mulai</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Input type='date' name="waktu_mulai" />
+                                <Input type='date' name="waktu_mulai" min={today} required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Tanggal Selesai</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Input type='date' name="waktu_selesai" />
+                                <Input type='date' name="waktu_selesai" min={today} required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Keterangan</FormLabel>
                             <div className="bg-white rounded-lg">
-                                <Textarea name="keterangan" />
+                                <Textarea name="keterangan" required />
                             </div>
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Pengganti</FormLabel>
                             <div className="bg-white rounded-lg">
                                 <Select name="pengganti">
+                                    <option value={0}>-</option>
                                     {
                                         pengganti.map((p,index)=>{
                                             return(
