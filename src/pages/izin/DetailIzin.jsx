@@ -24,13 +24,12 @@ function DetailIzinPage(){
 
     const fetchIzin = async () => {
         const res = await http.get(`/izin/${id_izin}`)
-        setIzin(res.data.izin)
-        // if(res.data.izin.nik_pengaju != user.nik){
-        //     navigate(-1)
-        // }
-        // else{
-        //     setIzin(res.data.izin)
-        // }
+        if(res.data.izin.nik_pengaju != user.nik){
+            navigate(-1)
+        }
+        else{
+            setIzin(res.data.izin)
+        }
     }
 
     useEffect(() => {
