@@ -1,6 +1,7 @@
 import './App.css'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom"
+import { useEffect } from 'react'
 
 import LoginPage from './pages/auth/Login';
 import ResetPassPage from './pages/auth/ResetPass';
@@ -27,6 +28,10 @@ const theme = extendTheme({
 })
 
 function App() {
+  useEffect(()=>{
+    window.addEventListener('beforeunload', localStorage.clear())
+  }, [])
+
   return(
     <ChakraProvider>
       <UserContextProvider>
