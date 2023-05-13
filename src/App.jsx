@@ -28,9 +28,14 @@ const theme = extendTheme({
 })
 
 function App() {
-  useEffect(()=>{
-    window.addEventListener('beforeunload', localStorage.clear())
-  }, [])
+  //TODO clear localstorage kl browser ditutup tp kl pake ini pas refresh jadi ke clear jg
+  // useEffect(()=>{
+  //   window.addEventListener('beforeunload', localStorage.clear())
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', localStorage.clear())
+  //   }
+  // }, [])
 
   return(
     <ChakraProvider>

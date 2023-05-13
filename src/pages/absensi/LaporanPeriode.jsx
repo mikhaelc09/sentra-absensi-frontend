@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import Header from "../../components/Header"
 import { Table, Thead, Tbody, Tr, Th, Td, Card, CardBody } from "@chakra-ui/react"
+import { http } from '../../utils'
 
 function LaporanPeriode(){
+    const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [absensi, setAbsensi] = useState([
+    const [laporan, setLaporan] = useState([
         {
             tanggal: 'Senin, 3 April 2023',
             absen_masuk: '06:55',
@@ -32,14 +35,20 @@ function LaporanPeriode(){
         },
     ])
 
+    const fetchLaporan = async () => {
+        const res = await http.get('/absensi/laporan/periode')
+        setLaporan(res.data.laporan)
+    }
+
     useEffect(() => {
         if(JSON.parse(localStorage.getItem('user'))==null){
             navigate('/')
         }
         else{
             setIsLoggedIn(true)
+            fetchLaporan()
         }
-    })
+    }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
@@ -51,33 +60,30 @@ function LaporanPeriode(){
                 <Card className="p-2">
                     <Table className="w-full">
                         <Thead>
-                            <div>
-                                <Tr>
-                                    <Th className="w-1/5 align-middle">Tanggal</Th>
-                                    <Th className="w-1/5 align-middle">Absensi</Th>
-                                    <Th className="w-1/5 align-middle">Jam Kerja</Th>
-                                    <Th className="w-1/5 align-middle">Waktu Kurang</Th>
-                                    <Th className="w-1/5 align-middle">Waktu Lebih</Th>
-                                </Tr>
-                            </div>
+                            <Tr>
+                                <Th className="w-1/5 align-middle text-center">Tanggal</Th>
+                                <Th className="w-1/5 align-middle text-center">Absensi</Th>
+                                <Th className="w-1/5 align-middle text-center">Jam Kerja</Th>
+                                <Th className="w-1/5 align-middle text-center">Waktu Kurang</Th>
+                                <Th className="w-1/5 align-middle text-center">Waktu Lebih</Th>
+                            </Tr>
                         </Thead>
                         <Tbody>
                             {
-                                absensi.map((a, index) => {
+                                laporan.map((a, index) => {
                                     return(
-                                        <div>
-                                            <Tr key={index}>
-                                                <Td rowspan='2' className="align-middle w-1/5">{a.tanggal}</Td>
+                                        <>
+                                            <Tr>
+                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.tanggal}</Td>
                                                 <Td className="w-1/5 text-center align-middle">{a.absen_masuk}</Td>
-                                                <Td rowspan='2' className="align-middle w-1/5">{a.jam_kerja}</Td>
-                                                <Td rowspan='2' className="align-middle w-1/5">{a.waktu_kurang}</Td>
-                                                <Td rowspan='2' className="align-middle w-1/5">{a.waktu_lebih}</Td>
+                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.jam_kerja}</Td>
+                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.waktu_kurang}</Td>
+                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.waktu_lebih}</Td>
                                             </Tr>
                                             <Tr>
                                                 <Td>{a.absen_keluar}</Td>
                                             </Tr>
-                                        </div>
-                                        
+                                        </>
                                     )
                                 })
                             }
