@@ -18,6 +18,7 @@ function HomePage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLembur, setIsLembur] = useState(0)
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -55,6 +56,16 @@ function HomePage(){
         setRiwayat(res.data.riwayat)
     }
 
+    const handleCheckboxChange = (e) => {
+        const target = e.target;
+        if(target.checked){
+            setIsLembur(1)
+        }
+        else{
+            setIsLembur(0)
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -62,19 +73,18 @@ function HomePage(){
         const formData = new FormData(form)
 
         const data = {
-            is_lembur: formData.get('is_lembur'),
+            is_lembur: isLembur,
             keterangan: formData.get('keterangan'),
-        }
-        let coord = {
-            lat:0,
-            lng:0,
+            coord: {
+                lat:0,
+                lng:0,
+            }
         }
         navigator.geolocation.getCurrentPosition(async (position) => {
-            coord.lng = position.coords.longitude
-            coord.lat = position.coords.latitude
+            data.coord.lng = position.coords.longitude
+            data.coord.lat = position.coords.latitude
             
-            data.coord = coord
-            console.log(coord)
+            console.log(data)
 
             const res = await http.post('/absensi', data)
             console.log(res.data)
@@ -154,7 +164,7 @@ function HomePage(){
                                 <Input type='text' name='keterangan' _placeholder={'Keterangan absensi'} />
                                 <FormHelperText>*hanya isi jika diperlukan</FormHelperText>
                             </FormControl>
-                            <Checkbox className='mt-3' name='is_lembur'>Lembur</Checkbox>
+                            <Checkbox className='mt-3' name='is_lembur' onChange={handleCheckboxChange}>Lembur</Checkbox>
                             <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full'>Absen</Button>
                         </form>
                     </ModalBody>

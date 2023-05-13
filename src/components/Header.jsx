@@ -39,24 +39,24 @@ function Header(props){
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton className="text-white" />
-                    <DrawerHeader className="flex py-auto bg-primary text-white" onClick={ ()=>{ navigate('/profil') } }>
+                    <DrawerHeader className="flex py-auto bg-primary text-white hover:cursor-pointer" onClick={ ()=>{ navigate('/profil') } }>
                         <HiUserCircle className="text-3xl" />
                         <p className="ml-3">{user.nama}</p>
                     </DrawerHeader>
                     <DrawerBody className="bg-primary text-white">
-                        <div className="flex my-4" onClick={ ()=>{ navigate('/absensi') } }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/absensi') } }>
                             <HiHome className="text-3xl" />
                             <p className="ml-3 my-auto">Beranda</p>
                         </div>
-                        <div className="flex my-4" onClick={ ()=>{ navigate('/absensi/laporan/tahunan') } }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/absensi/laporan/tahunan') } }>
                             <HiDocumentText className="text-3xl" />
                             <p className="ml-3 my-auto">Laporan Kehadiran</p>
                         </div>
-                        <div className="flex my-4" onClick={ ()=>{ navigate('/izin') } }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/izin') } }>
                             <HiCalendar className="text-3xl" />
                             <p className="ml-3 my-auto">Pengajuan Izin</p>
                         </div>
-                        <div className="flex my-4" onClick={ logout }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ logout }>
                             <HiLogout className="text-3xl" />
                             <p className="ml-3 my-auto">Logout</p>
                         </div>
