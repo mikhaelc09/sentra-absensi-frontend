@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import {
     Input,
@@ -10,11 +10,13 @@ import {
 } from '@chakra-ui/react'
 import Logo from '../../assets/images/logo_white.png'
 import { http } from '../../utils';
+import { ToastContext } from '../../context/ToastContext'
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate()
     const [clickForgot, setClickForgot] = useState(false)
+    const { fireToast } = useContext(ToastContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -27,11 +29,19 @@ function LoginPage(){
             password: formData.get('password'),
         }
 
-        const res = await http.post('/auth/login', data)
+        try{
+            const res = await http.post('/auth/login', data)
 
-        if(res.status==200){
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            navigate('/absensi')
+            if(res.status==200){
+                localStorage.setItem('user', JSON.stringify(res.data.user))
+                navigate('/absensi')
+            }
+            else{
+                fireToast('error', res.data.message)
+            }
+        }
+        catch(err){
+            fireToast('error', err.response.data.message)
         }
     }
 
@@ -48,15 +58,21 @@ function LoginPage(){
                 email: formData.get('email-reset')
             }
 
-            const res = await http.post('/auth/forgot-password', data)
+            try{
+                const res = await http.post('/auth/forgot-password', data)
             
-            if(res.status==200){
-                navigate('/')
-                console.log('Email sent')
+                if(res.status==200){
+                    navigate('/')
+                    fireToast('success', 'Email telah dikirimkan')
+                }
+                else{
+                    fireToast('error', res.data.message)
+                }
             }
-            else{
-                console.log(res.data.message)
+            catch(err){
+                fireToast('error', err.response.data.message)
             }
+            
         }
     }
 

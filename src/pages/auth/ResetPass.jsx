@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import {
-    Input,
-    FormControl, FormLabel, FormErrorMessage, FormHelperText,
+    FormControl, FormLabel,
     Card, CardBody,
     Button
 } from '@chakra-ui/react'
@@ -9,10 +8,12 @@ import Logo from '../../assets/images/logo_white.png'
 import InputPassword from '../../components/InputPassword'
 import { useNavigate, useParams } from 'react-router-dom'
 import { http } from '../../utils'
+import { ToastContext } from '../../context/ToastContext'
   
 function ResetPassPage(){
     const navigate = useNavigate()
     const { nik } = useParams()
+    const { fireToast } = useContext(ToastContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,13 +26,20 @@ function ResetPassPage(){
             password: formData.get('password'),
             confpass: formData.get('confpass'),
         }
-        console.log(data)
 
-        const res = await http.post('/auth/reset-password', data)
-        // console.log(res.data)
+        try{
+            const res = await http.post('/auth/reset-password', data)
 
-        if(res.status==200){
-            navigate('/')
+            if(res.status==200){
+                fireToast('success', 'Berhasil mengubah password')
+                navigate('/')
+            }
+            else{
+                fireToast('error', res.data.message)
+            }
+        }
+        catch(err){
+            fireToast('error', err.response.data.message)
         }
     }
 

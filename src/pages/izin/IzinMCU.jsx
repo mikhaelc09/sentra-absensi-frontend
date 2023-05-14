@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import {
     Input, Textarea,
-    FormControl, FormLabel, FormErrorMessage, FormHelperText,
+    FormControl, FormLabel,
     Button,
 } from '@chakra-ui/react'
 
 import Header from "../../components/Header"
 import { http } from "../../utils"
+import { ToastContext } from '../../context/ToastContext'
 
 function IzinMCU(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const user = JSON.parse(localStorage.getItem('user'))
     const today = new Date().toISOString().split('T')[0]
+    const { fireToast } = useContext(ToastContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -28,14 +30,23 @@ function IzinMCU(){
             lokasi: formData.get('lokasi'),
             jenis: formData.get('jenis')
         }
-        console.log(data)
 
-        const res = await http.post('/izin', data)
-        console.log(res.data.izin)
+        try{
+            const res = await http.post('/izin', data)
 
-        if(res.status==201){
-            navigate('/izin')
+            if(res.status==201){
+                fireToast('success', 'Berhasil mengajukan izin')
+                navigate('/izin')
+            }
+            else{
+                fireToast('error', res.data.message)
+            }
         }
+        catch(err){
+            console.log(err)
+            fireToast('error', err.response.data.message)
+        }
+        
     }
 
     useEffect(() => {

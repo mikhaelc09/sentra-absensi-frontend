@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import {
     FormControl, FormLabel, FormErrorMessage, FormHelperText,
@@ -8,10 +8,13 @@ import {
 import Header from "../../components/Header"
 import InputPassword from "../../components/InputPassword"
 import { http } from "../../utils"
+import { ToastContext } from '../../context/ToastContext'
 
 function UbahPass(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const { fireToast } = useContext(ToastContext)
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -23,16 +26,22 @@ function UbahPass(){
             newpass: formData.get('newpass'),
             confpass: formData.get('confpass'),
         }
-        console.log(data)
 
-        navigate('/profil')
+        try{
+            const res = await http.post('/profile/change-password', data)
 
-        const res = await http.post('/profile/change-password', data)
-        console.log(res.data)
-
-        if(res.status==200){
-            navigate('/profil')
+            if(res.status==200){
+                fireToast('success', 'Berhasil mengubah password')
+                navigate('/profil')
+            }
+            else{
+                fireToast('error', res.data.message)
+            }
         }
+        catch(err){
+            fireToast('error', err.response.data.message)
+        }
+        
     }
 
     useEffect(()=>{

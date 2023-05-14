@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { DateTime } from 'luxon'
 import { useNavigate } from 'react-router-dom'
 import { http } from '../../utils'
@@ -21,9 +21,7 @@ function HomePage(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLembur, setIsLembur] = useState(0)
-    const [currentTime, setCurrentTime] = useState(DateTime.local());
-    const [alert, setAlert] = useState(null)
-
+    const [currentTime, setCurrentTime] = useState(DateTime.local())
     const { fireToast } = useContext(ToastContext)
 
     const [overview, setOverview] = useState({
@@ -108,7 +106,6 @@ function HomePage(){
             }
         }
         catch(err){
-            console.log(err)
             fireToast('error', err.response.data.message)
         }
     }

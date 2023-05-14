@@ -2,12 +2,13 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {
     Input, Textarea, Select,
-    FormControl, FormLabel, FormErrorMessage, FormHelperText,
+    FormControl, FormLabel,
     Button,
 } from '@chakra-ui/react'
 
 import Header from "../../components/Header"
 import { http } from "../../utils"
+import { ToastContext } from '../../context/ToastContext'
 
 function IzinCuti(){
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ function IzinCuti(){
     const [sisaCuti, setSisaCuti] = useState(8)
     const user = JSON.parse(localStorage.getItem('user'))
     const today = new Date().toISOString().split('T')[0]
+    const { fireToast } = useContext(ToastContext)
 
     const [pengganti, setPengganti] = useState([
         {
@@ -50,13 +52,20 @@ function IzinCuti(){
             pengganti: formData.get('pengganti'),
             jenis: formData.get('jenis')
         }
-        console.log(data)
 
-        const res = await http.post('/izin', data)
-        console.log(res.data.izin)
+        try{
+            const res = await http.post('/izin', data)
 
-        if(res.status==201){
-            navigate('/izin')
+            if(res.status==201){
+                fireToast('success', 'Berhasil mengajukan izin')
+                navigate('/izin')
+            }
+            else{
+                fireToast('error', res.data.message)
+            }
+        }
+        catch(err){
+            fireToast('error', err.response.data.message)
         }
     }
 
