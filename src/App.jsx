@@ -17,7 +17,7 @@ import UbahPass from './pages/profile/UbahPass';
 import LaporanPeriode from './pages/absensi/LaporanPeriode';
 import LaporanTahunan from './pages/absensi/LaporanTahunan';
 import DetailIzinPage from './pages/izin/DetailIzin';
-import { UserContextProvider } from './context/UserContext'
+import { ToastProvider } from './context/ToastContext';
 
 const theme = extendTheme({
   colors: {
@@ -39,7 +39,7 @@ function App() {
 
   return(
     <ChakraProvider>
-      <UserContextProvider>
+      <ToastProvider>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/reset-password/:nik" element={<ResetPassPage />} />
@@ -56,7 +56,7 @@ function App() {
           <Route exact path="/profil/password" element={<UbahPass /> } />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </UserContextProvider>
+      </ToastProvider>
     </ChakraProvider>
     
   )

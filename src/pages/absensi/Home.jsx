@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useContext } from 'react'
 import { DateTime } from 'luxon'
 import { useNavigate } from 'react-router-dom'
 import { http } from '../../utils'
@@ -14,6 +14,7 @@ import {
     useDisclosure
  } from '@chakra-ui/react'
 import AbsensiCard from '../../components/AbsensiCard'
+import { ToastContext } from '../../context/ToastContext'
 
 function HomePage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,6 +22,9 @@ function HomePage(){
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLembur, setIsLembur] = useState(0)
     const [currentTime, setCurrentTime] = useState(DateTime.local());
+    const [alert, setAlert] = useState(null)
+
+    const { fireToast } = useContext(ToastContext)
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -82,21 +86,31 @@ function HomePage(){
                 lng:0,
             }
         }
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            data.coord.lng = position.coords.longitude
-            data.coord.lat = position.coords.latitude
-            
-            console.log(data)
 
+        const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject)
+        })
+
+        data.coord.lng = position.coords.longitude
+        data.coord.lat = position.coords.latitude
+        console.log(data)
+
+        try{
             const res = await http.post('/absensi', data)
-            console.log(res.data)
-
             if(res.status==201){
+                fireToast('success', 'Berhasil absen')
                 onClose()
                 fetchOverview()
                 fetchRiwayat()
             }
-        })
+            else{
+                fireToast('error', res.data.message)
+            }
+        }
+        catch(err){
+            console.log(err)
+            fireToast('error', err.response.data.message)
+        }
     }
 
     useEffect(() => {
@@ -161,7 +175,7 @@ function HomePage(){
                 <Button colorScheme='primary' className='bg-primary mt-8 w-full' onClick={()=>{ navigate('/absensi/laporan/periode') }} >Lihat Laporan Absensi Periode Ini</Button>
             </div>
             <Modal isOpen={isOpen} onClose={onClose} size={'xs'} isCentered>
-                <ModalOverlay />
+                <ModalOverlay className='z-10' />
                 <ModalContent>
                     <ModalHeader>Absen</ModalHeader>
                     <ModalCloseButton />
