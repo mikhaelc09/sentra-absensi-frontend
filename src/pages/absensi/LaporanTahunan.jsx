@@ -44,9 +44,12 @@ function LaporanTahunan(){
         else{
             setIsLoggedIn(true)
             fetchLaporan()
-            console.log(laporan.length)
         }
     }, [])
+
+    useEffect(()=>{
+        fetchLaporan()
+    }, [selectedBulan, selectedTahun])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
@@ -57,7 +60,7 @@ function LaporanTahunan(){
             <div className="content p-10 text-left flex flex-col">
                 <div className="flex gap-x-3">
                     <div className="bg-white rounded-lg w-2/3">
-                        <Select>
+                        <Select name="cmbBulan" onChange={(e)=>{setSelectedBulan(e.target.value)}}>
                             {
                                 bulan.map((b, index)=>{
                                     return(
@@ -68,7 +71,7 @@ function LaporanTahunan(){
                         </Select>
                     </div>
                     <div className="bg-white rounded-lg w-1/3">
-                        <Select>
+                        <Select name="cmbTahun" onChange={(e)=>{setSelectedTahun(e.target.value)}}>
                             {
                                 tahun.map((t, index)=>{
                                     return(
@@ -96,13 +99,6 @@ function LaporanTahunan(){
                                         text: `Grafik Kehadiran ${bulan[selectedBulan-1]}`,
                                     },
                                 },
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero: true
-                                        }
-                                    }]
-                                }
                             }} 
                             data={{
                                 // labels: laporan.map((l)=>{return('')}),
