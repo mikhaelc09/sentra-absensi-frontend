@@ -23,6 +23,7 @@ function HomePage(){
     const [isLembur, setIsLembur] = useState(0)
     const [currentTime, setCurrentTime] = useState(DateTime.local())
     const { fireToast } = useContext(ToastContext)
+    const [isSubmittingAbsen, setIsSubmittingAbsen] = useState(false)
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -73,6 +74,7 @@ function HomePage(){
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        setIsSubmittingAbsen(true)
         const form = e.target
         const formData = new FormData(form)
 
@@ -108,6 +110,7 @@ function HomePage(){
         catch(err){
             fireToast('error', err.response.data.message)
         }
+        setIsSubmittingAbsen(false)
     }
 
     useEffect(() => {
@@ -153,7 +156,7 @@ function HomePage(){
                                 <p className="text-sm text-primary">Jam Kerja</p>
                             </div>
                         </div>
-                        <Button colorScheme='primary' className='bg-primary mt-8 w-full' onClick={onOpen}>Absen</Button>
+                        <Button colorScheme='primary' className='bg-primary mt-8 w-full' onClick={onOpen} >Absen</Button>
                     </CardBody>
                     
                 </Card>
@@ -183,7 +186,7 @@ function HomePage(){
                                 <FormHelperText>*hanya isi jika diperlukan</FormHelperText>
                             </FormControl>
                             <Checkbox className='mt-3' name='is_lembur' onChange={handleCheckboxChange}>Lembur</Checkbox>
-                            <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full'>Absen</Button>
+                            <Button type='submit' colorScheme='primary' className='bg-primary mt-5 w-full' isLoading={isSubmittingAbsen} loadingText='Memproses'>Absen</Button>
                         </form>
                     </ModalBody>
                 </ModalContent>
