@@ -130,7 +130,7 @@ function HomePage(){
         <div className="w-screen h-full min-h-screen bg-gray">
             {
                 isLoggedIn &&
-                <Header title={currentTime.toFormat('HH:mm:ss')} subtitle='Senin, 3 April 2023' />
+                <Header title={currentTime.toFormat('HH:mm:ss')} subtitle={currentTime.setLocale('id-ID').toFormat('cccc, dd MMM yyyy')} />
             }
             <div className="content p-10 text-left">
                 <p className="text-xl font-semibold text-primary mb-3">Absensi</p>
