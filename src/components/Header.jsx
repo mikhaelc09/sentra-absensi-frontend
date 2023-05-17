@@ -3,6 +3,7 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { HiMenuAlt2, HiUserCircle, HiHome, HiDocumentText, HiCalendar, HiLogout } from 'react-icons/hi'
+import { RiBillFill } from 'react-icons/ri'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { http } from '../utils'
@@ -55,6 +56,10 @@ function Header(props){
                         <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/izin') } }>
                             <HiCalendar className="text-3xl" />
                             <p className="ml-3 my-auto">Pengajuan Izin</p>
+                        </div>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/') } }>
+                            <RiBillFill className="text-3xl" />
+                            <p className="ml-3 my-auto">Slip Gaji</p>
                         </div>
                         <div className="flex my-4 hover:cursor-pointer" onClick={ logout }>
                             <HiLogout className="text-3xl" />

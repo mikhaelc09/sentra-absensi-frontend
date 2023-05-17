@@ -101,7 +101,6 @@ function LaporanTahunan(){
                                 },
                             }} 
                             data={{
-                                // labels: laporan.map((l)=>{return('')}),
                                 labels: labels,
                                 datasets: [{
                                     fill: true,

@@ -19,16 +19,19 @@ function DetailIzinPage(){
         pengganti: 'Michael Kevin',
         lokasi: null
     })
-
-    const user = JSON.parse(localStorage.getItem('user'))
-
+    
     const fetchIzin = async () => {
-        const res = await http.get(`/izin/${id_izin}`)
-        if(res.data.izin.nik_pengaju != user.nik){
-            navigate(-1)
+        try{
+            const res = await http.get(`/izin/${id_izin}`)
+            if(res.status==200){
+                setIzin(res.data.izin)
+            }
+            else{
+                navigate('/')
+            }
         }
-        else{
-            setIzin(res.data.izin)
+        catch(err){
+            navigate('/')
         }
     }
 
