@@ -8,7 +8,7 @@ import { Line } from 'react-chartjs-2';
 import Header from "../../components/Header"
 import { http } from '../../utils'
 
-function LaporanTahunan(){
+function LaporanKehadiran(){
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [bulan, setBulan] = useState(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'])
     const [tahun, setTahun] = useState([2020, 2021, 2022, 2023, 2024, 2025])
@@ -55,7 +55,7 @@ function LaporanTahunan(){
         <div className="w-screen h-full min-h-screen bg-gray">
             {
                 isLoggedIn &&
-                <Header title='Grafik Kehadiran' subtitle='' />
+                <Header title='Grafik Kehadiran' subtitle={bulan[selectedBulan-1] + ' ' + selectedTahun} />
             }
             <div className="content p-10 text-left flex flex-col">
                 <div className="flex gap-x-3">
@@ -120,4 +120,4 @@ function LaporanTahunan(){
     )
 }
 
-export default LaporanTahunan
+export default LaporanKehadiran

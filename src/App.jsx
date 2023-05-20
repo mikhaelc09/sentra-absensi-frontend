@@ -15,7 +15,7 @@ import IzinMCU from './pages/izin/IzinMCU';
 import ProfilePage from './pages/profile/Profile';
 import UbahPass from './pages/profile/UbahPass';
 import LaporanPeriode from './pages/absensi/LaporanPeriode';
-import LaporanTahunan from './pages/absensi/LaporanTahunan';
+import LaporanKehadiran from './pages/absensi/LaporanKehadiran';
 import DetailIzinPage from './pages/izin/DetailIzin';
 import { ToastProvider } from './context/ToastContext';
 
@@ -47,7 +47,7 @@ function App() {
           <Route exact path="/invalid-token" element={<InvalidToken />} />
           <Route exact path="/absensi" element={<HomePage />} />
           <Route exact path="/absensi/laporan/periode" element={<LaporanPeriode />} />
-          <Route exact path="/absensi/laporan/tahunan" element={<LaporanTahunan />} />
+          <Route exact path="/absensi/laporan/kehadiran" element={<LaporanKehadiran />} />
           <Route exact path="/izin" element={<RiwayatPage /> } />
           <Route exact path="/izin/:id_izin" element={<DetailIzinPage /> } />
           <Route exact path="/izin/cuti" element={<IzinCuti /> } />

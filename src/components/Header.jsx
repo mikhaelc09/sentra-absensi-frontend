@@ -49,7 +49,7 @@ function Header(props){
                             <HiHome className="text-3xl" />
                             <p className="ml-3 my-auto">Beranda</p>
                         </div>
-                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/absensi/laporan/tahunan') } }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/absensi/laporan/kehadiran') } }>
                             <HiDocumentText className="text-3xl" />
                             <p className="ml-3 my-auto">Laporan Kehadiran</p>
                         </div>
