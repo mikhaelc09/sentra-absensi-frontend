@@ -44,10 +44,7 @@ function ResetPassPage(){
     }
 
     useEffect(() => {
-        if(JSON.parse(localStorage.getItem('user'))==null){
-            navigate('/')
-        }
-        else{
+        if(JSON.parse(localStorage.getItem('user'))!=null){
             navigate('/absensi')
         }
     })

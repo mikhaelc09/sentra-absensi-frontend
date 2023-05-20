@@ -11,6 +11,7 @@ import {
 import Logo from '../../assets/images/logo_white.png'
 import { http } from '../../utils';
 import { ToastContext } from '../../context/ToastContext'
+import InputPassword from '../../components/InputPassword';
   
 function LoginPage(){
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -105,7 +106,7 @@ function LoginPage(){
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Password</FormLabel>
-                                <Input type='password' name='password' />
+                                <InputPassword type='password' name='password' />
                                 <FormHelperText 
                                     className='text-right' 
                                     onClick={onOpen}
