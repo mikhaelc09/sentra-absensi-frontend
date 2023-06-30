@@ -50,11 +50,21 @@ function LaporanPeriode(){
         }
     }, [])
 
+    const [bulan, setBulan] = useState(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'])
+    const date = new Date()
+    const [periode, setPeriode] = useState('26 Maret - 25 April 2023')
+    if(date.getDate() < 26){
+        setPeriode('26 ' + bulan[date.getMonth()-1] + ' - 25 ' + bulan[date.getMonth()] + ' ' + date.getFullYear())
+    }
+    else{
+        setPeriode('26 ' + bulan[date.getMonth()] + ' - 25 ' + bulan[date.getMonth()+1] + ' ' + date.getFullYear())
+    }
+
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
             {
                 isLoggedIn && 
-                <Header title='Laporan Absensi' subtitle='Periode 26 Maret - 25 April 2023' />
+                <Header title='Laporan Absensi' subtitle={`Periode ${periode}`} />
             }
             <div className="content p-10 text-left flex flex-col">
                 <Card className="p-2">
