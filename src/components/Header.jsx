@@ -57,10 +57,10 @@ function Header(props){
                             <HiCalendar className="text-3xl" />
                             <p className="ml-3 my-auto">Pengajuan Izin</p>
                         </div>
-                        {/* <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/') } }>
+                        <div className="flex my-4 hover:cursor-pointer" onClick={ ()=>{ navigate('/gaji/slip') } }>
                             <RiBillFill className="text-3xl" />
                             <p className="ml-3 my-auto">Slip Gaji</p>
-                        </div> */}
+                        </div>
                         <div className="flex my-4 hover:cursor-pointer" onClick={ logout }>
                             <HiLogout className="text-3xl" />
                             <p className="ml-3 my-auto">Logout</p>

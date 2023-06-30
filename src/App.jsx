@@ -17,6 +17,7 @@ import UbahPass from './pages/profile/UbahPass';
 import LaporanPeriode from './pages/absensi/LaporanPeriode';
 import LaporanKehadiran from './pages/absensi/LaporanKehadiran';
 import DetailIzinPage from './pages/izin/DetailIzin';
+import SlipGaji from './pages/gaji/SlipGaji';
 import { ToastProvider } from './context/ToastContext';
 
 const theme = extendTheme({
@@ -54,6 +55,7 @@ function App() {
           <Route exact path="/izin/mcu" element={<IzinMCU /> } />
           <Route exact path="/profil" element={<ProfilePage /> } />
           <Route exact path="/profil/password" element={<UbahPass /> } />
+          <Route exact path="/gaji/slip" element={<SlipGaji /> } />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ToastProvider>

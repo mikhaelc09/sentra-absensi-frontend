@@ -11,3 +11,10 @@ export const http = axios.create({
         'x-auth-token': Cookies.get('token')
     }
 })
+
+export const toRupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number)
+}
