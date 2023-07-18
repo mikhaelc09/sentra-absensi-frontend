@@ -98,9 +98,15 @@ function HomePage(){
         setIsSubmittingAbsen(false)
     }
 
-    useEffect(() => {
+    const logout = async () => {
+        await http.post('/auth/logout')
+        localStorage.clear()
+        navigate('/')
+    }
+
+    useEffect(() =>{
         if(JSON.parse(localStorage.getItem('user'))==null && !Cookies.get('token')){
-            navigate('/')
+            logout()
         }
         else{
             setIsLoggedIn(true)
