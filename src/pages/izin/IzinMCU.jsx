@@ -5,6 +5,7 @@ import {
     FormControl, FormLabel,
     Button,
 } from '@chakra-ui/react'
+import SignatureCanvas from 'react-signature-canvas'
 
 import Header from "../../components/Header"
 import { http } from "../../utils"
@@ -16,6 +17,7 @@ function IzinMCU(){
     const user = JSON.parse(localStorage.getItem('user'))
     const today = new Date().toISOString().split('T')[0]
     const { fireToast } = useContext(ToastContext)
+    let sigCanvas = {}
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -110,6 +112,18 @@ function IzinMCU(){
                             <div className="bg-white rounded-lg">
                                 <Textarea name="keterangan" />
                             </div>
+                        </FormControl>
+                        <FormControl className='mb-2'>
+                            <FormLabel>Tanda Tangan Atasan</FormLabel>
+                            <div className="bg-white rounded-lg w-72">
+                                <SignatureCanvas 
+                                    ref={(ref) => { sigCanvas = ref }} 
+                                    canvasProps={{width: 280, height: 150}}
+                                />
+                            </div>
+                            <button colorScheme="primary" variants='solid' className='ml-auto mt-2 px-2 py-1 bg-primary text-white' onClick={()=>{sigCanvas.clear()}}>
+                                Clear
+                            </button>
                         </FormControl>
                         <div className="buttons flex gap-x-2 mt-5">
                             <Button colorScheme="primary" variant='outline' className="w-1/2" onClick={ ()=>{navigate('/izin')} }>Batal</Button>
