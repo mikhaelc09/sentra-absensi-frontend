@@ -32,26 +32,7 @@ function HomePage(){
         jamKeluar: '14:09',
         jamKerja: '07:14',
     })
-    const [riwayat, setRiwayat] = useState([
-        {
-            jam: '06:55:00',
-            alamat: 'Jalan Tenggilis 135B',
-            kota: 'Surabaya',
-            status: 1
-        },
-        {
-            jam: '10:15:00',
-            alamat: 'Tunjungan Plaza',
-            kota: 'Surabaya',
-            status: 0
-        },
-        {
-            jam: '14:09:00',
-            alamat: 'Jalan Tenggilis 135B',
-            kota: 'Surabaya',
-            status: 1
-        },
-    ])
+    const [riwayat, setRiwayat] = useState([])
 
     const fetchOverview = async () => {
         const res = await http.get('/absensi/overview')
@@ -125,6 +106,9 @@ function HomePage(){
             setIsLoggedIn(true)
             fetchOverview()
             fetchRiwayat()
+            if(riwayat.length>0){
+                window.location.reload(true)
+            }
         }
 
         const interval = setInterval(() => {
