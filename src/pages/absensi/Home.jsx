@@ -13,6 +13,7 @@ import {
     Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, ModalFooter,
     useDisclosure
  } from '@chakra-ui/react'
+ import Cookies from 'js-cookie'
 import AbsensiCard from '../../components/AbsensiCard'
 import { ToastContext } from '../../context/ToastContext'
 
@@ -24,6 +25,7 @@ function HomePage(){
     const [currentTime, setCurrentTime] = useState(DateTime.local())
     const { fireToast } = useContext(ToastContext)
     const [isSubmittingAbsen, setIsSubmittingAbsen] = useState(false)
+    let status = 200
 
     const [overview, setOverview] = useState({
         jamMasuk: '06:55',
@@ -54,11 +56,13 @@ function HomePage(){
     const fetchOverview = async () => {
         const res = await http.get('/absensi/overview')
         setOverview(res.data.overview)
+        status = res.status
     }
 
     const fetchRiwayat = async () => {
         const res = await http.get('/absensi/riwayat')
         setRiwayat(res.data.riwayat)
+        status = res.status
     }
 
     const handleCheckboxChange = (e) => {
@@ -114,7 +118,7 @@ function HomePage(){
     }
 
     useEffect(() => {
-        if(JSON.parse(localStorage.getItem('user'))==null){
+        if(JSON.parse(localStorage.getItem('user'))==null && !Cookies.get('token')){
             navigate('/')
         }
         else{

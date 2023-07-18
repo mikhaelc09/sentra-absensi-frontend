@@ -8,6 +8,7 @@ import {
     Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, ModalFooter,
     useDisclosure
 } from '@chakra-ui/react'
+import Cookies from 'js-cookie'
 import Logo from '../../assets/images/logo_white.png'
 import { http } from '../../utils';
 import { ToastContext } from '../../context/ToastContext'
@@ -78,7 +79,7 @@ function LoginPage(){
     }
 
     useEffect(() => {
-        if(JSON.parse(localStorage.getItem('user'))!=null){
+        if(JSON.parse(localStorage.getItem('user'))!=null && Cookies.get('token')){
             navigate('/absensi')
         }
     })
