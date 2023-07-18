@@ -52,7 +52,8 @@ function IzinCuti(){
             waktu_selesai: formData.get('waktu_selesai'),
             keterangan: formData.get('keterangan'),
             pengganti: formData.get('pengganti'),
-            jenis: formData.get('jenis')
+            jenis: formData.get('jenis'),
+            ttd: sigCanvas.toDataURL('image/png')
         }
 
         try{
@@ -149,15 +150,15 @@ function IzinCuti(){
                         </FormControl>
                         <FormControl className='mb-2'>
                             <FormLabel>Tanda Tangan Atasan</FormLabel>
-                            <div className="bg-white rounded-lg w-72">
+                            <div className="bg-white rounded-lg w-72 mb-3">
                                 <SignatureCanvas 
                                     ref={(ref) => { sigCanvas = ref }} 
                                     canvasProps={{width: 280, height: 150}}
                                 />
                             </div>
-                            <button colorScheme="primary" variants='solid' className='ml-auto mt-2 px-2 py-1 bg-primary text-white' onClick={()=>{sigCanvas.clear()}}>
+                            <span className='px-2 py-1 bg-primary text-white rounded' onClick={()=>{sigCanvas.clear()}}>
                                 Clear
-                            </button>
+                            </span>
                         </FormControl>
                         <div className="buttons flex gap-x-2 mt-5">
                             <Button colorScheme="primary" variant='outline' className="w-1/2" onClick={ ()=>{navigate('/izin')} }>Batal</Button>

@@ -92,6 +92,11 @@ function DetailIzinPage(){
                                     <td className="p-2 align-top">:</td>
                                     <td className="p-2 align-top">{izin.status}</td>
                                 </tr>
+                                <tr>
+                                    <td className="py-2 align-top max-w-full whitespace-nowrap">Tanda Tangan Atasan</td>
+                                    <td className="p-2 align-top">:</td>
+                                    <td className="p-2 align-top"><img src={izin.ttd} alt="" /></td>
+                                </tr>
                             </tbody>
                         </table>
                     </CardBody>
