@@ -3,5 +3,5 @@ WORKDIR /home/app
 COPY . .
 RUN npm install
 RUN mv .env.example .env
-EXPOSE 3003
+EXPOSE 5173
 CMD ["npm", "dev"]
