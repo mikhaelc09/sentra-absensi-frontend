@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 export const http = axios.create({
     withCredentials: true,
-    baseURL:"http://localhost:3000/api/v1",
+    baseURL: import.meta.env.VITE_BACKEND ?? "http://localhost:3000/api/v1",
     headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
