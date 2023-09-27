@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Card, CardBody, Select } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import { Card, Select } from '@chakra-ui/react'
 import { toRupiah } from '../../utils/index'
 
 import Header from '../../components/Header'
@@ -40,8 +40,9 @@ function SlipGaji(){
     const fetchGaji = async () => {
         const res = await http.get(`/gaji/slip/${selectedTahun}/${selectedBulan}`)
         setGaji(res.data.gaji)
-        setTotalPenghasilan(res.data.totalPenghasilan)
-        setTotalPotongan(res.data.totalPotongan)
+
+        res.data.totalPenghasilan ? setTotalPenghasilan(res.data.totalPenghasilan) : setTotalPenghasilan(0)
+        res.data.totalPotongan ? setTotalPotongan(res.data.totalPotongan) : setTotalPotongan(0)
     }
 
     useEffect(() => {
@@ -120,7 +121,7 @@ function SlipGaji(){
                                         Penghasilan
                                     </div>
                                 </tr>
-                                {
+                                { gaji &&
                                     gaji.dpenggajian.map((detail, idx)=>{
                                         if(detail.nominal > 0){
                                             return(
@@ -144,6 +145,7 @@ function SlipGaji(){
                                     </div>
                                 </tr>
                                 {
+                                    gaji &&
                                     gaji.dpenggajian.map((detail, idx)=>{
                                         if(detail.nominal <= 0){
                                             return(
@@ -165,7 +167,7 @@ function SlipGaji(){
                                 <tr className="font-bold text-lg">
                                     <td className="py-1 pr-2 align-top whitespace-nowrap">Penerimaan Bersih</td>
                                     <td className="p-1 align-top">:</td>
-                                    <td className="p-1 align-top">{toRupiah(totalPenghasilan - totalPotongan)}</td>
+                                    <td className="p-1 align-top">{ toRupiah(totalPenghasilan - totalPotongan)}</td>
                                 </tr>
                             </tbody>
                         </table>
