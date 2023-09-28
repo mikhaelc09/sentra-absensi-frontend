@@ -40,6 +40,10 @@ function LaporanPeriode(){
         setLaporan(res.data.laporan)
     }
 
+    const [bulan, setBulan] = useState(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'])
+    const date = new Date()
+    const [periode, setPeriode] = useState('26 Maret - 25 April 2023')
+    
     useEffect(() => {
         if(JSON.parse(localStorage.getItem('user'))==null){
             navigate('/')
@@ -48,17 +52,14 @@ function LaporanPeriode(){
             setIsLoggedIn(true)
             fetchLaporan()
         }
-    }, [])
 
-    const [bulan, setBulan] = useState(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'])
-    const date = new Date()
-    const [periode, setPeriode] = useState('26 Maret - 25 April 2023')
-    if(date.getDate() < 26){
-        setPeriode('26 ' + bulan[date.getMonth()-1] + ' - 25 ' + bulan[date.getMonth()] + ' ' + date.getFullYear())
-    }
-    else{
-        setPeriode('26 ' + bulan[date.getMonth()] + ' - 25 ' + bulan[date.getMonth()+1] + ' ' + date.getFullYear())
-    }
+        if(date.getDate() < 26){
+            setPeriode('26 ' + bulan[date.getMonth()-1] + ' - 25 ' + bulan[date.getMonth()] + ' ' + date.getFullYear())
+        }
+        else{
+            setPeriode('26 ' + bulan[date.getMonth()] + ' - 25 ' + bulan[date.getMonth()+1] + ' ' + date.getFullYear())
+        }
+    }, [])
 
     return(
         <div className="w-screen h-full min-h-screen bg-gray">
@@ -66,7 +67,7 @@ function LaporanPeriode(){
                 isLoggedIn && 
                 <Header title='Laporan Absensi' subtitle={`Periode ${periode}`} />
             }
-            <div className="content p-10 text-left flex flex-col">
+            <div className="content p-5 md:p-10 text-left flex flex-col">
                 <Card className="p-2">
                     <Table className="w-full">
                         <Thead>
@@ -79,7 +80,7 @@ function LaporanPeriode(){
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {
+                            { laporan.length > 0 &&
                                 laporan.map((a, index) => {
                                     return(
                                         <>
