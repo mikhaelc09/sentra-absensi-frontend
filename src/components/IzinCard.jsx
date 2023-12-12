@@ -37,7 +37,7 @@ function IzinCard(props){
                     <p className="text-green-700 font-semibold">Disetujui</p>
                 }
                 {
-                    izin.status==3 && 
+                    izin.status==0 && 
                     <p className="text-red-700 font-semibold">Ditolak</p>
                 }
             </CardBody>

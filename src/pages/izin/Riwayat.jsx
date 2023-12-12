@@ -17,7 +17,7 @@ function RiwayatPage(){
             waktu_selesai: '10 Maret 2023',
             jenis: 2,
             keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 3
+            status: 0
         },
         {
             id: 2,
