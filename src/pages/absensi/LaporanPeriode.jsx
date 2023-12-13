@@ -68,7 +68,7 @@ function LaporanPeriode(){
                 <Header title='Laporan Absensi' subtitle={`Periode ${periode}`} />
             }
             <div className="content p-5 md:p-10 text-left flex flex-col">
-                <Card className="p-2">
+                <Card className="p-2 overflow-x-scroll">
                     <Table className="w-full">
                         <Thead>
                             <Tr>

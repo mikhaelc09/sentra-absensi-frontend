@@ -1,30 +1,40 @@
 import { useEffect, useState } from "react"
-import { Card, Select, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
+import { Card, Select } from '@chakra-ui/react'
+import {
+    Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement,
+    Title, Tooltip, Filler, Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 import Header from "../../components/Header"
 import { http } from '../../utils'
 
-function LaporanKehadiran(){
+function LaporanKehadiranOld(){
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [bulan, setBulan] = useState(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'])
-    const [tahun, setTahun] = useState([])
+    const [tahun, setTahun] = useState([2020, 2021, 2022, 2023, 2024, 2025])
 
     const date = new Date()
     const [selectedBulan, setSelectedBulan] = useState(date.getMonth()+1)
     const [selectedTahun, setSelectedTahun] = useState(date.getFullYear())
 
     const [laporan, setLaporan] = useState([])
+    const [labels, setLabels] = useState([])
 
-    const setTahuns = () => {
-        let tahuns = []
-        for(let i=2023; i<=date.getFullYear(); i++){
-            tahuns.push(i)
-        }
-        setTahun(tahuns)
-    }
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Filler,
+        Legend
+    )
 
     const fetchLaporan = async () => {
         const res = await http.get(`/absensi/laporan/${selectedTahun}/${selectedBulan}`)
         setLaporan(res.data.laporan)
+        setLabels(res.data.labels)
     }
 
     useEffect(() => {
@@ -34,7 +44,6 @@ function LaporanKehadiran(){
         else{
             setIsLoggedIn(true)
             fetchLaporan()
-            setTahuns()
         }
     }, [])
 
@@ -73,42 +82,42 @@ function LaporanKehadiran(){
                         </Select>
                     </div>
                 </div>
-                <Card className="p-2 mt-5 overflow-x-scroll">
-                    <Table className="w-full">
-                        <Thead>
-                            <Tr>
-                                <Th className="w-1/5 align-middle text-center">Tanggal</Th>
-                                <Th className="w-1/5 align-middle text-center">Absensi</Th>
-                                <Th className="w-1/5 align-middle text-center">Jam Kerja</Th>
-                                <Th className="w-1/5 align-middle text-center">Waktu Kurang</Th>
-                                <Th className="w-1/5 align-middle text-center">Waktu Lebih</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            { laporan.length > 0 &&
-                                laporan.map((a, index) => {
-                                    return(
-                                        <>
-                                            <Tr>
-                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.tanggal}</Td>
-                                                <Td className="w-1/5 text-center align-middle">{a.absen_masuk}</Td>
-                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.jam_kerja}</Td>
-                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.waktu_kurang}</Td>
-                                                <Td rowSpan='2' className="align-middle text-center w-1/5">{a.waktu_lebih}</Td>
-                                            </Tr>
-                                            <Tr>
-                                                <Td>{a.absen_keluar}</Td>
-                                            </Tr>
-                                        </>
-                                    )
-                                })
-                            }
-                        </Tbody>
-                    </Table>
+                <Card className="mt-10 p-10 w-full h-96">
+                    {
+                        laporan && (
+                        <Line 
+                            datasetIdKey="id" 
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: `Grafik Kehadiran ${bulan[selectedBulan-1]}`,
+                                    },
+                                },
+                            }} 
+                            data={{
+                                labels: labels,
+                                datasets: [{
+                                    fill: true,
+                                    label: 'Persentase Kehadiran',
+                                    data: laporan,
+                                    lineTension: 0.4,
+                                    borderColor: 'rgb(53, 162, 235)',
+                                    backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                                    borderWidth: 1
+                                }],
+                            }} 
+                        />)
+                    }
                 </Card>
             </div>
         </div>
     )
 }
 
-export default LaporanKehadiran
+export default LaporanKehadiranOld
