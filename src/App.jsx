@@ -11,6 +11,7 @@ import NotFound from './pages/auth/404Page';
 import HomePage from './pages/absensi/Home';
 import RiwayatPage from './pages/izin/Riwayat';
 import IzinCuti from './pages/izin/IzinCuti';
+import IzinSakit from './pages/izin/IzinSakit';
 import IzinMCU from './pages/izin/IzinMCU';
 import ProfilePage from './pages/profile/Profile';
 import UbahPass from './pages/profile/UbahPass';
@@ -52,6 +53,7 @@ function App() {
           <Route exact path="/izin" element={<RiwayatPage /> } />
           <Route exact path="/izin/:id_izin" element={<DetailIzinPage /> } />
           <Route exact path="/izin/cuti" element={<IzinCuti /> } />
+          <Route exact path="/izin/sakit" element={<IzinSakit /> } />
           <Route exact path="/izin/mcu" element={<IzinMCU /> } />
           <Route exact path="/profil" element={<ProfilePage /> } />
           <Route exact path="/profil/password" element={<UbahPass /> } />

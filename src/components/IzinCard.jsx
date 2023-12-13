@@ -23,6 +23,10 @@ function IzinCard(props){
                             izin.jenis==2 && 
                             <p className="bg-sky-100 text-primary font-medium rounded-full px-4 py-1">MCU</p>
                         }
+                        {
+                            izin.jenis==3 && 
+                            <p className="bg-orange-100 text-primary font-medium rounded-full px-4 py-1">Sakit</p>
+                        }
                     </div>
                 </div>
                 <p className="text-slate-500 mb-4 w-5/6">

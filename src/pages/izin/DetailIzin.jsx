@@ -95,7 +95,10 @@ function DetailIzinPage(){
                                 <tr>
                                     <td className="py-2 align-top max-w-full whitespace-nowrap">Tanda Tangan Atasan</td>
                                     <td className="p-2 align-top">:</td>
-                                    <td className="p-2 align-top"><img src={izin.ttd} alt="" /></td>
+                                    {
+                                        izin.ttd != '' && 
+                                        <td className="p-2 align-top"><img src={izin.ttd} alt="" /></td>
+                                    }
                                 </tr>
                             </tbody>
                         </table>

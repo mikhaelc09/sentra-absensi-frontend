@@ -46,8 +46,7 @@ function IzinSakit(){
             waktu_selesai: formData.get('waktu_selesai'),
             keterangan: formData.get('keterangan'),
             pengganti: formData.get('pengganti'),
-            jenis: formData.get('jenis'),
-            ttd: sigCanvas.toDataURL('image/png')
+            jenis: formData.get('jenis')
         }
 
         try{
