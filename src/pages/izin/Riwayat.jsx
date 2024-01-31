@@ -11,30 +11,30 @@ function RiwayatPage(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [izin, setIzin] = useState([
-        {
-            id: 1,
-            waktu_mulai: '10 Maret 2023',
-            waktu_selesai: '10 Maret 2023',
-            jenis: 2,
-            keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 0
-        },
-        {
-            id: 2,
-            waktu_mulai: '15 Maret 2023',
-            waktu_selesai: '17 Maret 2023',
-            jenis: 1,
-            keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 2
-        },
-        {
-            id: 3,
-            waktu_mulai: '20 Maret 2023',
-            waktu_selesai: '20 Maret 2023',
-            jenis: 2,
-            keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-            status: 1
-        },
+        // {
+        //     id: 1,
+        //     waktu_mulai: '10 Maret 2023',
+        //     waktu_selesai: '10 Maret 2023',
+        //     jenis: 2,
+        //     keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
+        //     status: 0
+        // },
+        // {
+        //     id: 2,
+        //     waktu_mulai: '15 Maret 2023',
+        //     waktu_selesai: '17 Maret 2023',
+        //     jenis: 1,
+        //     keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
+        //     status: 2
+        // },
+        // {
+        //     id: 3,
+        //     waktu_mulai: '20 Maret 2023',
+        //     waktu_selesai: '20 Maret 2023',
+        //     jenis: 2,
+        //     keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
+        //     status: 1
+        // },
     ])
 
     const fetchIzin = async () => {

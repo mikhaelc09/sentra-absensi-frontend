@@ -28,9 +28,9 @@ function HomePage(){
     let status = 200
 
     const [overview, setOverview] = useState({
-        jamMasuk: '06:55',
-        jamKeluar: '14:09',
-        jamKerja: '07:14',
+        jamMasuk: '--:--',
+        jamKeluar: '--:--',
+        jamKerja: '--:--',
     })
     const [riwayat, setRiwayat] = useState([])
 

@@ -21,14 +21,14 @@ function IzinCuti(){
     let sigCanvas = {}
 
     const [pengganti, setPengganti] = useState([
-        {
-            nama: 'Michael Kevin',
-            nik: 2
-        },
-        {
-            nama: 'Alexander Kevin',
-            nik: 3
-        },
+        // {
+        //     nama: 'Michael Kevin',
+        //     nik: 2
+        // },
+        // {
+        //     nama: 'Alexander Kevin',
+        //     nik: 3
+        // },
     ])
 
     const fetchPengganti = async () => {

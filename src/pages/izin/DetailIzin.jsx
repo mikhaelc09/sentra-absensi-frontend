@@ -10,14 +10,14 @@ function DetailIzinPage(){
     const { id_izin } = useParams()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [izin, setIzin] = useState({
-        id: 1,
-        waktu_mulai: '10 Maret 2023',
-        waktu_selesai: '10 Maret 2023',
-        jenis: 'Cuti',
-        keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
-        status: 'Ditolak',
-        pengganti: 'Michael Kevin',
-        lokasi: null
+        // id: 1,
+        // waktu_mulai: '10 Maret 2023',
+        // waktu_selesai: '10 Maret 2023',
+        // jenis: 'Cuti',
+        // keterangan: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, ipsa.',
+        // status: 'Ditolak',
+        // pengganti: 'Michael Kevin',
+        // lokasi: null
     })
     
     const fetchIzin = async () => {

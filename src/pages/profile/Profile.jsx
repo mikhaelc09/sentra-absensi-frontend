@@ -9,13 +9,13 @@ function ProfilePage(){
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const [user, setUser] = useState({
-        nama: 'Mikhael Chris',
-        divisi: 'Admin',
-        nik: '12345',
-        email: 'mikhaelc@gmail.com',
-        no_telp: '08123456789',
-        alamat: 'Jalan Ngagel Jaya Tengah, Surabaya',
-        tanggal_lahir: '1 Januari 1999'
+        // nama: 'Mikhael Chris',
+        // divisi: 'Admin',
+        // nik: '12345',
+        // email: 'mikhaelc@gmail.com',
+        // no_telp: '08123456789',
+        // alamat: 'Jalan Ngagel Jaya Tengah, Surabaya',
+        // tanggal_lahir: '1 Januari 1999'
     })
 
     const fetchKaryawan = async () => {

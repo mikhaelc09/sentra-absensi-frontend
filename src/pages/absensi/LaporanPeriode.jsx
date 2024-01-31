@@ -9,30 +9,30 @@ function LaporanPeriode(){
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [laporan, setLaporan] = useState([
-        {
-            tanggal: 'Senin, 3 April 2023',
-            absen_masuk: '06:55',
-            absen_keluar: '14:15',
-            jam_kerja: '07:00',
-            waktu_kurang: '00:00',
-            waktu_lebih: '00:20',
-        },
-        {
-            tanggal: 'Selasa, 4 April 2023',
-            absen_masuk: '07:00',
-            absen_keluar: '14:05',
-            jam_kerja: '07:00',
-            waktu_kurang: '00:00',
-            waktu_lebih: '00:05',
-        },
-        {
-            tanggal: 'Rabu, 5 April 2023',
-            absen_masuk: '07:10',
-            absen_keluar: '14:15',
-            jam_kerja: '06:50',
-            waktu_kurang: '00:10',
-            waktu_lebih: '00:15',
-        },
+        // {
+        //     tanggal: 'Senin, 3 April 2023',
+        //     absen_masuk: '06:55',
+        //     absen_keluar: '14:15',
+        //     jam_kerja: '07:00',
+        //     waktu_kurang: '00:00',
+        //     waktu_lebih: '00:20',
+        // },
+        // {
+        //     tanggal: 'Selasa, 4 April 2023',
+        //     absen_masuk: '07:00',
+        //     absen_keluar: '14:05',
+        //     jam_kerja: '07:00',
+        //     waktu_kurang: '00:00',
+        //     waktu_lebih: '00:05',
+        // },
+        // {
+        //     tanggal: 'Rabu, 5 April 2023',
+        //     absen_masuk: '07:10',
+        //     absen_keluar: '14:15',
+        //     jam_kerja: '06:50',
+        //     waktu_kurang: '00:10',
+        //     waktu_lebih: '00:15',
+        // },
     ])
 
     const fetchLaporan = async () => {

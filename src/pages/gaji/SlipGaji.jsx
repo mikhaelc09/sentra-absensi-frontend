@@ -11,20 +11,20 @@ function SlipGaji(){
     const user = JSON.parse(localStorage.getItem('user'))
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [gaji, setGaji] = useState({
-        hpenggajian: {
-            id: 1,
-            nik: 123,
-            tanggal: '2023-07-01',
-            total: 1000000,
-        },
-        dpenggajian: [{
-            id: 1,
-            id_header: 1,
-            judul: 'Gaji Pokok',
-            jumlah: 1,
-            nominal: 20000000,
-            subtotal: 2000000
-        }]
+        // hpenggajian: {
+        //     id: 1,
+        //     nik: 123,
+        //     tanggal: '2023-07-01',
+        //     total: 1000000,
+        // },
+        // dpenggajian: [{
+        //     id: 1,
+        //     id_header: 1,
+        //     judul: 'Gaji Pokok',
+        //     jumlah: 1,
+        //     nominal: 20000000,
+        //     subtotal: 2000000
+        // }]
     })
     const [totalPenghasilan, setTotalPenghasilan] = useState(0)
     const [totalPotongan, setTotalPotongan] = useState(0)
